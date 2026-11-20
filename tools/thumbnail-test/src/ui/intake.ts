@@ -18,7 +18,14 @@ export function setOnRealImage(fn: (kind: SlotKind) => void): void {
   onRealImage = fn;
 }
 
+const requests: Record<SlotKind, number> = { sweater: 0, card: 0 };
+
 async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => void): Promise<void> {
+  const request = ++requests[kind];
+  if (pendingErrors[kind]) {
+    delete pendingErrors[kind];
+    rerender();
+  }
   const fileIssues = checkFile(file.name, file.type, file.size);
   if (fileIssues.some((i) => i.level === 'error')) {
     renderErrorOnly(kind, file.name, fileIssues);
@@ -26,36 +33,42 @@ async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => v
     return;
   }
   const url = URL.createObjectURL(file);
+  let img: HTMLImageElement;
   try {
-    const img = await decode(url);
-    const issues = [...fileIssues, ...checkDimensions(kind, img.naturalWidth, img.naturalHeight)];
-    const loaded: LoadedImage = {
-      kind,
-      name: file.name,
-      url,
-      width: img.naturalWidth,
-      height: img.naturalHeight,
-      bytes: file.size,
-      img,
-      sample: false,
-      issues,
-    };
-    onRealImage(kind);
-    setImage(kind, loaded);
-    announce(`${SLOT_SPECS[kind].label} loaded: ${loaded.width} by ${loaded.height} pixels.`);
+    img = await decode(url);
   } catch {
     URL.revokeObjectURL(url);
+    if (request !== requests[kind]) return;
     const issues: Issue[] = [{ level: 'error', message: 'The browser could not decode this file. Re-export it as PNG.' }];
     renderErrorOnly(kind, file.name, issues);
     announce(`${file.name} could not be decoded.`);
+    return;
   }
+  if (request !== requests[kind]) {
+    URL.revokeObjectURL(url);
+    return;
+  }
+  const loaded: LoadedImage = {
+    kind,
+    name: file.name,
+    url,
+    width: img.naturalWidth,
+    height: img.naturalHeight,
+    bytes: file.size,
+    img,
+    sample: false,
+    issues: [...fileIssues, ...checkDimensions(kind, img.naturalWidth, img.naturalHeight)],
+  };
+  onRealImage(kind);
+  setImage(kind, loaded);
+  announce(`${SLOT_SPECS[kind].label} loaded: ${loaded.width} by ${loaded.height} pixels.`);
 }
 
-const pendingErrors: Partial<Record<SlotKind, { name: string; issues: Issue[] }>> = {};
+const pendingErrors: Partial<Record<SlotKind, Issue[]>> = {};
 let rerender: () => void = () => {};
 
 function renderErrorOnly(kind: SlotKind, name: string, issues: Issue[]): void {
-  pendingErrors[kind] = { name, issues };
+  pendingErrors[kind] = issues.map((issue) => ({ ...issue, message: `${name}: ${issue.message}` }));
   rerender();
 }
 
@@ -77,14 +90,11 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
   const input = h('input', { type: 'file', id: inputId, accept: 'image/png,image/jpeg', class: 'visually-hidden', tabindex: -1 });
   input.addEventListener('change', () => {
     const file = input.files?.[0];
-    if (file) {
-      delete pendingErrors[kind];
-      void loadFile(kind, file, announce);
-    }
     input.value = '';
+    if (file) void loadFile(kind, file, announce);
   });
 
-  const choose = h('button', { type: 'button', class: 'btn' }, image && !image.sample ? 'Replace file' : 'Choose file');
+  const choose = h('button', { type: 'button', id: `choose-${kind}`, class: 'btn' }, image && !image.sample ? 'Replace file' : 'Choose file');
   choose.addEventListener('click', () => input.click());
 
   const preview = image
@@ -107,10 +117,7 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
     e.preventDefault();
     drop.classList.remove('is-over');
     const file = e.dataTransfer?.files?.[0];
-    if (file) {
-      delete pendingErrors[kind];
-      void loadFile(kind, file, announce);
-    }
+    if (file) void loadFile(kind, file, announce);
   });
 
   const meta = image
@@ -121,11 +128,9 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
         h('span', {}, `${image.width} × ${image.height} px`),
         h('span', {}, image.bytes === null ? 'sample' : formatBytes(image.bytes)),
       )
-    : error
-      ? h('p', { class: 'slot__meta mono' }, h('span', { class: 'slot__name', title: error.name }, error.name))
-      : h('p', { class: 'slot__meta hint' }, 'Nothing loaded yet.');
+    : h('p', { class: 'slot__meta hint' }, 'Nothing loaded yet.');
 
-  const issues = image ? image.issues : (error?.issues ?? []);
+  const issues = [...(error ?? []), ...(image?.issues ?? [])];
   const ok = image?.sample
     ? h('p', { class: 'slot__sample' }, 'Composition sketch, not a contest asset. Choose your export to test it.')
     : image && !issues.length
@@ -150,7 +155,11 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
 }
 
 export function mountIntake(root: HTMLElement, announce: (msg: string) => void): void {
-  rerender = () => root.replaceChildren(...KINDS.map((k) => slot(k, announce)));
+  rerender = () => {
+    const focused = root.contains(document.activeElement) ? document.activeElement?.id : undefined;
+    root.replaceChildren(...KINDS.map((k) => slot(k, announce)));
+    if (focused) document.getElementById(focused)?.focus({ preventScroll: true });
+  };
   subscribe(rerender);
   rerender();
 }
