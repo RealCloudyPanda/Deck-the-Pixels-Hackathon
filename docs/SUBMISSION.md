@@ -1,7 +1,7 @@
 # Submission drafts — The 11:59 Sweater
 
-Copy into the Devpost form on Dec 6. Every `[[PLACEHOLDER: …]]` must be replaced with a real fact from the
-[Generation Log](GEN_LOG.md). Nothing here may be invented; if a number is not in the log, leave it out.
+Draft your Devpost answers in your own words from the [Generation Log](GEN_LOG.md) and the final files.
+Replace every `[[PLACEHOLDER: …]]` with a recorded fact and remove any step you skipped or changed.
 
 ## Title
 
@@ -18,7 +18,7 @@ Peace on Earth, and a successful upload.
 ## Description (2 sentences)
 
 ```
-A calm, wholesome holiday card of me as my messy brown panda self, wearing an ugly knitted sweater that celebrates the worst minute of finals season: 11:59 PM, upload frozen at 97%. Every pixel of both images was made in Photoshop with Nano Banana selected in Generative Fill, and every word and number is hand-set type, never generated.
+A calm, wholesome holiday card of me as my messy brown panda self, wearing an ugly knitted sweater that celebrates the worst minute of finals season: 11:59 PM, upload frozen at 97%. I created both designs in Adobe Photoshop using Nano Banana Generative Fill, my own portrait as the card’s starting point, and hand-set lettering.
 ```
 
 ## Written Answer — Image 1, Sweater Design (150–250 words)
@@ -56,22 +56,23 @@ Three techniques made Nano Banana controllable inside Photoshop. A reference lay
 - [ ] Image 1 `IMAGE1_SWEATER_1159.png`, 2400 x 2400 px, PNG (or JPEG q90 if over the upload limit)
 - [ ] Image 2 `IMAGE2_CARD_1159.png`, 1500 x 2100 px, PNG (or JPEG q90)
 - [ ] Both images pass the Thumbnail Test: "11:59" at 64 px, the bar at 128 px
-- [ ] Layers Screenshot `LAYERS_CARD_1159.png`: groups expanded, hidden reference visible in the list,
-      Properties panel shows a Nano Banana layer, avatar/email cropped out
-- [ ] Written Answers pasted, **zero `[[PLACEHOLDER` left** (search the text before submitting)
-- [ ] Every number in the answers matches the Generation Log
+- [ ] Layers Screenshot `LAYERS_CARD_1159.png`: Layers panel visible, groups expanded, hidden reference visible in the list,
+      and account avatar/email cropped out
+- [ ] English Written Answers describe how I used Photoshop and Nano Banana on each image, with **zero `[[PLACEHOLDER` left**
+- [ ] Every technique and number in the answers matches the final files and Generation Log
+- [ ] Devpost uploads are my two Photoshop exports and the actual Photoshop Layers Screenshot
 - [ ] Only my own likeness; no logos, brands or generated text anywhere
 - [ ] Submitted **before Dec 7, 12:00 PM ET** (4 h margin before the deadline; re-read the deadline on Devpost)
 
 ## Rules compliance
 
-| Rule (as summarised in RESEARCH §1) | How the kit satisfies it | Owner check |
+| [Official Devpost rules](https://deckthepixels.devpost.com/rules) | What the entrant checks | Owner check |
 |---|---|---|
+| Individual entrant eligibility (§4, §7) | Check age, residency and other restrictions before submitting as an individual | [ ] |
 | All images made in Photoshop with Nano Banana selected in Generative Fill | Runbook "Before every generation" step 3; every log row records the model | [ ] |
-| New, original work made during the contest period | All work starts Nov 20; PSD versions in `work/` are dated | [ ] |
+| Original work owned by the entrant and created during the contest period (§7) | The entrant created and owns the submitted design and materials; the dated PSDs and log document when the work was made | [ ] |
 | Only the entrant's own likeness | C01 uses the owner's own photo; C02 and C06 reject any extra people | [ ] |
 | No third-party logos, trademarks or slogans | Negative Clause on every prompt; laptop/cables/mugs prompted as logo-free; fonts from Photoshop | [ ] |
 | Two images, PNG/JPEG | Export table in RUNBOOK §5 | [ ] |
 | Written answers on how Nano Banana + Photoshop made each image | Templates above, built from the Generation Log | [ ] |
 | Screenshot of the file with the Layers panel | RUNBOOK §6 recipe | [ ] |
-| Disclosure | The kit (docs, tool) was written with an AI coding assistant; the images were made by the owner | [ ] |

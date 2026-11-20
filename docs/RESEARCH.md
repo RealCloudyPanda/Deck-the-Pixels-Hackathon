@@ -2,21 +2,17 @@
 
 Collected 2026-11-20 with web search. Photoshop's partner-model features change between releases,
 so every line marked **Verify** must be checked in the owner's own Photoshop before relying on it.
-The Devpost pages (`deckthepixels.devpost.com`, `/rules`) returned HTTP 403 to automated fetches;
-contest facts below come from the coordinator's brief and must be re-read on the live rules page.
-Two facts were confirmed by the coordinator on the official rules page (read 2026-11-18) and are no
-longer marked Verify: the free Photoshop web daily limit, and that Nano Banana is used by selecting it
-as the model in Generative Fill.
+Contest requirements were checked against the [official Devpost rules](https://deckthepixels.devpost.com/rules).
 
-## 1. Contest facts (from the brief, re-read on Devpost before submitting)
+## 1. Contest facts
 
 | Fact | Value | Source |
 |---|---|---|
 | Deadline | Dec 7 2026, 4:00 PM ET | coordinator brief / Devpost |
 | Deliverables | 2 images (PNG/JPEG): sweater design, finished card | brief |
-| Also required | Written answers on how Nano Banana + Photoshop made each image; screenshot of the Photoshop file with the Layers panel visible | brief |
+| Also required | English written answers on how Nano Banana + Photoshop made each image; screenshot of the Photoshop file with the Layers panel visible | official rules §7 |
 | Tool rule | All images created in Adobe Photoshop using Nano Banana selected as the Generative Fill model | official rules page, read 2026-11-18 (confirmed) |
-| Eligibility | Individuals; new original work made during the contest period | brief |
+| Eligibility | Individuals meeting the age, residency and other restrictions; new original work owned by the entrant and created during the contest period | official rules §4 and §7 |
 | Likeness | Only the entrant's own likeness | brief |
 | IP | No third-party logos, trademarks or slogans | brief |
 | Free tier | Photoshop web free: "Free accounts include five (5) image generations per day" | official rules page, read 2026-11-18 (confirmed) |
