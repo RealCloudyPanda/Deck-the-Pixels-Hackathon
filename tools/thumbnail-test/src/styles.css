@@ -919,3 +919,29 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
+
+/* ---------- polish ---------- */
+
+.hint,
+.lede,
+.entry__answer {
+  text-wrap: pretty;
+}
+.metric {
+  max-width: 240px;
+}
+.tally__empty {
+  margin-top: calc(var(--space-2) * -1);
+}
+@media (max-width: 960px) {
+  .rung {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  .rung__label {
+    grid-auto-flow: column;
+    justify-content: start;
+    align-items: baseline;
+    gap: var(--space-3);
+  }
+}

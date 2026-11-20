@@ -108,7 +108,15 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
         dispatch({ type: 'add', id: `t${Date.now().toString(36)}`, name, answer: area.value });
         announce('Answer saved. Mark it Got it, Partly or Missed.');
       });
+      form.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          phase = { kind: 'idle' };
+          focusAfter = 'tally-name';
+          render();
+        }
+      });
       form.querySelector('[data-cancel]')?.addEventListener('click', () => {
+        focusAfter = 'tally-name';
         phase = { kind: 'idle' };
         render();
       });
