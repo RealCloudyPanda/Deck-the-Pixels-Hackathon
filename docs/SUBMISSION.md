@@ -1,0 +1,77 @@
+# Submission drafts — The 11:59 Sweater
+
+Copy into the Devpost form on Dec 6. Every `[[PLACEHOLDER: …]]` must be replaced with a real fact from the
+[Generation Log](GEN_LOG.md). Nothing here may be invented; if a number is not in the log, leave it out.
+
+## Title
+
+```
+The 11:59 Sweater
+```
+
+## Tagline
+
+```
+Peace on Earth, and a successful upload.
+```
+
+## Description (2 sentences)
+
+```
+A calm, wholesome holiday card of me as my messy brown panda self, wearing an ugly knitted sweater that celebrates the worst minute of finals season: 11:59 PM, upload frozen at 97%. Every pixel of both images was made in Photoshop with Nano Banana selected in Generative Fill, and every word and number is hand-set type, never generated.
+```
+
+## Written Answer — Image 1, Sweater Design (150–250 words)
+
+```
+I built the sweater as a flat-lay in a 2400 x 2400 px Photoshop file, one Nano Banana generation at a time, with Nano Banana selected in the Generative Fill model dropdown for every run. I started with a Select All base pass that left the chest plain red ([[PLACEHOLDER: number of base attempts]] attempts; I kept the one with [[PLACEHOLDER: why you kept it]]). The shoulder and hem bands were separate selections, prompted as Fair Isle made of loading-spinner snowflakes, hourglasses and coffee cups.
+
+The joke had to read at thumbnail size, so "11:59" is real type. I set it in [[PLACEHOLDER: font name]], rasterised a copy, expanded the selection 150 px and asked Nano Banana to turn "these exact shapes" into raised glittery intarsia. The live type layer is still in the file, hidden, so you can compare. The 97% progress bar started as two shape layers (track and fill) that Nano Banana turned into sewn felt appliqué with a jingle bell at the stuck end.
+
+For the sleeve cables I used annotation prompting: red guide lines on a notes layer, and a prompt ending "Remove the red lines when done". [[PLACEHOLDER: what failed and how you fixed it, e.g. a red line survived on the first try]].
+
+In total the sweater took [[PLACEHOLDER: total sweater generations from the log]] generations, of which [[PLACEHOLDER: kept count]] are in the final file. I checked every step in a thumbnail tool at 64 and 128 px.
+```
+
+## Written Answer — Image 2, Finished Card (150–250 words)
+
+```
+The card is a 1500 x 2100 px portrait (5 x 7 in at 300 ppi). I started from my own photo and used Nano Banana to restyle me into my messy brown panda self while keeping my face; I tried [[PLACEHOLDER: variant A styled human / variant B 3D character]] and kept [[PLACEHOLDER: which and why]]. The calm living room was generated around me with an inverted, contracted subject selection.
+
+The sweater had to match Image 1 exactly, so I never regenerated it from text. I extended the canvas 1500 px to the right, placed the finished sweater PSD there as a linked Smart Object, selected across my torso and the reference in one selection, and prompted Nano Banana to "dress the person on the left in exactly the sweater shown on the right". Then I hid the reference and cropped the canvas back. The hidden reference layer is visible in my Layers screenshot. [[PLACEHOLDER: how many attempts the dress step took and what you fixed with small follow-up selections]].
+
+The "11:59" on my chest is the same type layer as in Image 1, warped to the folds with a Multiply blend so the digits are identical. The headline "Peace on Earth" and the small "and a successful upload." are type too. The border, laptop-with-a-bow and cocoa were further small Nano Banana generations. The card took [[PLACEHOLDER: total card generations from the log]] generations.
+```
+
+## Top Banana paragraph (technique)
+
+Use in the description or the Written Answers if space allows.
+
+```
+Three techniques made Nano Banana controllable inside Photoshop. A reference layer: the approved sweater placed inside the card canvas, selected together with my portrait, so the model copies a design instead of reinventing it, then hidden and cropped away. Annotation prompting: red guide lines on a notes layer told the model exactly where the sleeve cables go, and the prompt asked it to remove them. A type-to-knit pass: real type, rasterised, padded and knitted, so the joke's digits are exact and the live type stays in the file as proof. All of it on a free plan of [[PLACEHOLDER: 5 per day, or note the trial if you used it]] generations, logged one by one.
+```
+
+## Final checklist
+
+- [ ] Image 1 `IMAGE1_SWEATER_1159.png`, 2400 x 2400 px, PNG (or JPEG q90 if over the upload limit)
+- [ ] Image 2 `IMAGE2_CARD_1159.png`, 1500 x 2100 px, PNG (or JPEG q90)
+- [ ] Both images pass the Thumbnail Test: "11:59" at 64 px, the bar at 128 px
+- [ ] Layers Screenshot `LAYERS_CARD_1159.png`: groups expanded, hidden reference visible in the list,
+      Properties panel shows a Nano Banana layer, avatar/email cropped out
+- [ ] Written Answers pasted, **zero `[[PLACEHOLDER` left** (search the text before submitting)
+- [ ] Every number in the answers matches the Generation Log
+- [ ] Only my own likeness; no logos, brands or generated text anywhere
+- [ ] Submitted **before Dec 7, 12:00 PM ET** (4 h margin before the deadline; re-read the deadline on Devpost)
+
+## Rules compliance
+
+| Rule (as summarised in RESEARCH §1) | How the kit satisfies it | Owner check |
+|---|---|---|
+| All images made in Photoshop with Nano Banana selected in Generative Fill | Runbook "Before every generation" step 3; every log row records the model | [ ] |
+| New, original work made during the contest period | All work starts Nov 20; PSD versions in `work/` are dated | [ ] |
+| Only the entrant's own likeness | C01 uses the owner's own photo; C02 and C06 reject any extra people | [ ] |
+| No third-party logos, trademarks or slogans | Negative Clause on every prompt; laptop/cables/mugs prompted as logo-free; fonts from Photoshop | [ ] |
+| Two images, PNG/JPEG | Export table in RUNBOOK §5 | [ ] |
+| Written answers on how Nano Banana + Photoshop made each image | Templates above, built from the Generation Log | [ ] |
+| Screenshot of the file with the Layers panel | RUNBOOK §6 recipe | [ ] |
+| Disclosure | The kit (docs, tool) was written with an AI coding assistant; the images were made by the owner | [ ] |
