@@ -360,4 +360,4 @@ Partner models may cost premium generative credits even in the trial (**Verify**
 | Area too big, soft or low detail | **Split the selection** into overlapping halves ≤ 1500 px | 2 |
 | Almost right, one small flaw | **Accept and fix with C04** on a small selection, or mask by hand | 0–1 |
 | Two rejects in a row on the same step | **Stop for the day.** Rewrite the prompt offline, log both rejects | 0 |
-| Text or a logo appeared | Mask it out by hand (Remove tool / clone is fine) and re-run only if it is in a tier 1–2 area | 0–1 |
+| Text or a logo appeared | Mask it out by hand with Clone Stamp (avoid the Remove tool: it is a Firefly feature, **Verify**) and re-run only if it is in a tier 1–2 area | 0–1 |
