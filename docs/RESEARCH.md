@@ -4,6 +4,9 @@ Collected 2026-11-20 with web search. Photoshop's partner-model features change 
 so every line marked **Verify** must be checked in the owner's own Photoshop before relying on it.
 The Devpost pages (`deckthepixels.devpost.com`, `/rules`) returned HTTP 403 to automated fetches;
 contest facts below come from the coordinator's brief and must be re-read on the live rules page.
+Two facts were confirmed by the coordinator on the official rules page (read 2026-11-18) and are no
+longer marked Verify: the free Photoshop web daily limit, and that Nano Banana is used by selecting it
+as the model in Generative Fill.
 
 ## 1. Contest facts (from the brief, re-read on Devpost before submitting)
 
@@ -12,18 +15,21 @@ contest facts below come from the coordinator's brief and must be re-read on the
 | Deadline | Dec 7 2026, 4:00 PM ET | coordinator brief / Devpost |
 | Deliverables | 2 images (PNG/JPEG): sweater design, finished card | brief |
 | Also required | Written answers on how Nano Banana + Photoshop made each image; screenshot of the Photoshop file with the Layers panel visible | brief |
-| Tool rule | All images created in Adobe Photoshop using Nano Banana selected as the Generative Fill model | brief |
+| Tool rule | All images created in Adobe Photoshop using Nano Banana selected as the Generative Fill model | official rules page, read 2026-11-18 (confirmed) |
 | Eligibility | Individuals; new original work made during the contest period | brief |
 | Likeness | Only the entrant's own likeness | brief |
 | IP | No third-party logos, trademarks or slogans | brief |
-| Free tier | Photoshop web free: 5 generations/day; 7-day free trial available | brief, **Verify** in account |
+| Free tier | Photoshop web free: "Free accounts include five (5) image generations per day" | official rules page, read 2026-11-18 (confirmed) |
+| Trial | 7-day free trial available | brief, **Verify** in account |
 | Prizes | 1st $8k, 2nd $5k, 3rd $3k; The Worst Noel (best ugly sweater) $2k x3; Top Banana (best use of Nano Banana) $2.5k; Community Choice $500 | brief |
 | Judging | Technological implementation; Innovation / idea; Design | brief |
 
 ## 2. Model selection
 
+- Confirmed by the official rules page (read 2026-11-18): Nano Banana is accessed by **selecting it as
+  the model in Generative Fill**.
 - In Photoshop, start **Generative Fill** from the Contextual Task Bar (or Edit > Generative Fill)
-  and pick **Gemini (Nano Banana)** from the model dropdown. Firefly Fill & Expand is the default,
+  and pick **Gemini (Nano Banana)** from the model dropdown (exact menu label: **Verify** in your build). Firefly Fill & Expand is the default,
   so the dropdown must be checked on **every** generation.
   [Adobe Learn: Nano Banana generative edits](https://www.adobe.com/learn/photoshop/web/nano-banana-generative-edits)
 - The partner list has grown over 2026: Gemini 2.5 (Nano Banana), Gemini 3 (Nano Banana Pro),
@@ -78,7 +84,7 @@ contest facts below come from the coordinator's brief and must be re-read on the
 
 ## 6. Implications for this kit
 
-1. Budget is the binding constraint: ~5 Nano Banana generations/day on free web. 17 calendar days
+1. Budget is the binding constraint: 5 Nano Banana generations/day on free web (confirmed on the rules page). 17 calendar days
    remain (Nov 20 → Dec 7). Prompts must be finished before the session, never improvised.
 2. Lock the sweater first, reuse it in the card as a reference layer (ADR 0001).
 3. All lettering is type layers; prompts include "no text, no letters, no logos".
