@@ -49,7 +49,11 @@ export function mountLadder(root: HTMLElement): void {
         'div',
         { class: 'rung' },
         h('div', { class: 'rung__label' }, h('span', { class: 'rung__px mono' }, `${size} px`), h('span', { class: 'hint' }, TIER_NOTE[size] ?? '')),
-        h('div', { class: 'rung__thumbs' }, ...KINDS.map((k) => cell(state, k, size))),
+        h(
+          'div',
+          { class: 'rung__thumbs', tabindex: size >= 256 ? 0 : undefined, role: 'group', 'aria-label': `${size} pixel thumbnails` },
+          ...KINDS.map((k) => cell(state, k, size)),
+        ),
       ),
     );
     root.replaceChildren(...rows);

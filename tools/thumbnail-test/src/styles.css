@@ -555,9 +555,12 @@ h1 {
   gap: var(--space-6);
   align-items: flex-start;
   flex-wrap: wrap;
+  min-width: 0;
+  overflow-x: auto;
 }
 .thumb {
   margin: 0;
+  flex: none;
   display: grid;
   gap: var(--space-2);
   justify-items: start;
@@ -941,5 +944,14 @@ h1 {
     justify-content: start;
     align-items: baseline;
     gap: var(--space-3);
+  }
+}
+@media (max-width: 720px) {
+  .intake__slots {
+    grid-template-columns: 1fr;
+  }
+  .masthead__tools,
+  .slot__head {
+    flex-wrap: wrap;
   }
 }
