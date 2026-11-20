@@ -806,3 +806,77 @@ h1 {
   color: var(--pine);
   font-weight: 500;
 }
+
+/* ---------- budget ---------- */
+
+.budget {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  border-radius: var(--radius-m);
+  background: var(--paper-raised);
+  box-shadow: var(--shadow-1);
+  border: 1px solid transparent;
+}
+.budget__text {
+  display: grid;
+  line-height: 1.2;
+}
+.budget__label {
+  font-size: 0.75rem;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--font-mono);
+}
+.budget__value {
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+.budget__pips {
+  display: flex;
+  gap: 4px;
+}
+.pip {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  border: 1.5px solid var(--ink-3);
+  transition: background-color var(--dur) ease, border-color var(--dur) ease;
+}
+.pip.is-used {
+  background: var(--cranberry);
+  border-color: var(--cranberry);
+}
+.budget.is-spent .budget__value {
+  color: var(--cranberry);
+}
+.budget__ctrl {
+  display: flex;
+  gap: 2px;
+}
+.budget__btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--step-1);
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--dur) ease, transform 120ms var(--ease-out);
+}
+.budget__btn:active:not([disabled]) {
+  transform: scale(0.94);
+}
+.budget__btn[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+@media (hover: hover) {
+  .budget__btn:hover:not([disabled]) {
+    background: var(--paper-sunk);
+  }
+}
