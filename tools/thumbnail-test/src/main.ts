@@ -5,6 +5,7 @@ import '@fontsource/ibm-plex-sans/600.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import './styles.css';
+import { mountChecks } from './ui/checks';
 import { mountIntake } from './ui/intake';
 import { mountLadder } from './ui/ladder';
 
@@ -23,4 +24,5 @@ const announce = (msg: string): void => {
 };
 
 mountIntake(byId('intake-slots'), announce);
+mountChecks(byId('checks-bar'), byId('ladder'));
 mountLadder(byId('ladder-rows'));

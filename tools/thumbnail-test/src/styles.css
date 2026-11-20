@@ -558,3 +558,112 @@ h1 {
   font-size: var(--step--1);
   color: var(--ink-3);
 }
+
+/* ---------- checks ---------- */
+
+.checks__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.chips {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 36px;
+  padding: 0 var(--space-4) 0 var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  font-size: var(--step--1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--dur) ease, border-color var(--dur) ease, color var(--dur) ease, transform 120ms var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.chip:active {
+  transform: scale(0.97);
+}
+.chip__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-3);
+  transition: background-color var(--dur) ease, border-color var(--dur) ease;
+}
+.chip[aria-pressed='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.chip[aria-pressed='true'] .chip__dot {
+  background: var(--cranberry);
+  border-color: var(--paper);
+}
+@media (hover: hover) {
+  .chip:hover {
+    border-color: var(--ink-3);
+  }
+}
+
+.ladder.is-gray .thumb__img {
+  filter: grayscale(1);
+}
+.ladder.is-squint .thumb__img {
+  filter: blur(1.5px);
+}
+.ladder.is-gray.is-squint .thumb__img {
+  filter: grayscale(1) blur(1.5px);
+}
+.ladder.is-dark .ladder__rows {
+  background: var(--gallery-dark);
+}
+.ladder.is-dark .rung + .rung {
+  border-top-color: #3a3734;
+}
+.ladder.is-dark .rung__px {
+  color: #f6efe3;
+}
+.ladder.is-dark .rung .hint,
+.ladder.is-dark .thumb__cap,
+.ladder.is-dark .metric {
+  color: #c9c0b4;
+}
+.ladder.is-dark .thumb__img {
+  outline-color: oklch(1 0 0 / 0.1);
+}
+/* approximate 3:2 gallery crop: dim everything outside a centred 3:2 band */
+.ladder.is-crop .thumb__frame::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  aspect-ratio: 3 / 2;
+  transform: translateY(-50%);
+  box-shadow: 0 0 0 999px rgb(30 27 24 / 0.62);
+  outline: 1.5px solid var(--cranberry);
+  pointer-events: none;
+}
+.ladder.is-crop .thumb__frame {
+  overflow: hidden;
+}
+.metric {
+  font-size: var(--step--1);
+  color: var(--ink-2);
+  max-width: 200px;
+  line-height: 1.35;
+}
+.metric__value {
+  font-weight: 500;
+  color: var(--ink);
+}
+.ladder.is-dark .metric__value {
+  color: #f6efe3;
+}
