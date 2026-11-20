@@ -134,3 +134,129 @@ overwrite; a bad save must not cost Generations.
    Keep Content Credentials if Photoshop offers it (**Verify** whether the web version attaches them).
 3. Save as `work/exports/IMAGE1_SWEATER_1159.png`.
 4. Run the Thumbnail Test on it. The sweater is now **locked** (ADR 0001); later ideas go to the card only.
+
+---
+
+## 3. Card setup
+
+1. New document **`CARD_1159.psd`**: 1500 x 2100 px (5 x 7 in at 300 ppi), sRGB, 8-bit.
+2. Save as `work/CARD_1159_v01.psd`.
+3. Create the groups, top to bottom:
+
+```
+CARD_1159.psd
+├─ 60 LETTERING                 T Peace on Earth · T and a successful upload. · T 11:59 chest overlay (warped)
+├─ 50 FRAME                     GF C05 border
+├─ 40 SWEATER ON BODY           GF C03 dress · GF C04 fixes (masked)
+├─ 30 PANDA SELF                GF C01 restyle · owner photo original (hidden)
+├─ 20 ROOM                      GF C02 room · GF C06 props
+├─ 10 REFERENCE (hidden)        SO SWEATER_1159 (linked Smart Object)
+└─ Background
+```
+
+`SO` = Smart Object.
+
+## 4. Card session, step by step
+
+### C01 Panda Self (Nov 27–28)
+
+1. File > Place Embedded the owner's **own** photo (or self-made avatar). Only the owner's likeness:
+   if anyone else is in the photo, crop or mask them out before any generation.
+2. Put it in `30 PANDA SELF`, name it `owner photo original`. Duplicate it; generate on the duplicate.
+3. Select > Subject; Select > Modify > Expand 120 px; Feather 15 px.
+4. Generative Fill → Nano Banana → **C01 variant A**. Next day (or next generation) try **variant B** on a
+   fresh duplicate. Compare both in the Thumbnail Test at 256 px.
+5. Keep → `GF C01 restyle`. Hide `owner photo original` (keep it as proof of the source).
+
+### C02 Room
+
+1. Select the `GF C01 restyle` layer. Select > Subject → Select > Inverse → Select > Modify > Contract
+   **20 px**; Feather 10 px.
+2. Select group `20 ROOM`. Generate with **C02**. Keep → `GF C02 room`.
+3. Zoom to 100% around the hair: if the edge is rough, C04 later fixes it.
+
+### C03 Dress — the Reference Layer technique
+
+This is the core technique of the entry (and of the Top Banana argument). Partner models see only the
+pixels inside the selection, so the approved sweater must be **inside the canvas** next to the person.
+
+1. Save first (`work/CARD_1159_v04.psd`).
+2. Image > **Canvas Size**: Width **+1500 px**, Relative on, anchor **left-middle**. Canvas is now 3000 x 2100.
+3. File > **Place Linked** → `work/SWEATER_1159_vNN.psd` (the locked version). It becomes `SO SWEATER_1159`
+   in `10 REFERENCE`. Scale it to about the person's torso width and move it into the new right half,
+   vertically level with the torso.
+4. Make `10 REFERENCE` **visible** for this step.
+5. Lasso the person's torso and arms (+40 px). Shift-drag to **add** a band across the reference sweater
+   (chest, bands, one sleeve). One selection, spanning both. Feather 12 px. If the combined selection is wider
+   than ~1500 px, shrink the reference and move it closer; do not split this one.
+6. Select group `40 SWEATER ON BODY`. Generative Fill → Nano Banana → **C03**.
+7. Review only the left half. Keep the variation whose colours, bands, bar and cables match Image 1.
+   Rename `GF C03 dress`. Add a layer mask that hides everything right of x = 1500.
+8. **Hide `10 REFERENCE`.**
+9. Image > Canvas Size: Width **−1500 px**, anchor **left-middle** (or Crop tool to 1500 x 2100 from the left).
+   Confirm Image > Image Size reads 1500 x 2100.
+10. Save `work/CARD_1159_v05.psd`.
+
+**Optional (Photoshop Beta desktop only):** if the reference-image button appears right of the model
+picker, attach `IMAGE1_SWEATER_1159.png` as a reference **as well** and use the same prompt (RESEARCH §4,
+**Verify** availability on your plan). Log which method produced the kept layer.
+
+### C04 Fix
+
+1. Zoom to 100% and inspect hands, cuffs, collar, hairline.
+2. Small Lasso + 40 px, feather 8 px, **C04**. Keep → mask to the problem area → `GF C04 fixes`.
+
+### C05 Border
+
+1. Group `50 FRAME`. Select All → Select > Modify > Contract **90 px** → Select > Inverse.
+2. Generate with **C05**. Keep → `GF C05 border`.
+
+### C06 Props
+
+1. Group `20 ROOM`. Lasso on the sofa cushion (~400 x 260 px + 60 px), **C06 laptop prompt**.
+2. Lasso on the side table (~260 x 260 px + 60 px), **C06 cocoa prompt**.
+3. Keep → `GF C06 props` (two layers are fine: `GF C06 laptop`, `GF C06 cocoa`).
+
+### Re-apply the 11:59 so the card matches Image 1
+
+The generated sweater on the body will have soft or drifted digits. The digits are **Hand-set Lettering**,
+so they are re-applied from type:
+
+1. Copy `T 11:59` (and `T PM`) from `SWEATER_1159.psd` into `60 LETTERING`. Name it `T 11:59 chest overlay`.
+2. Scale to the chest; Edit > Transform > **Warp** (or Puppet Warp on a Smart Object copy) so it follows the
+   folds of the sweater.
+3. Blend mode **Multiply** or **Overlay**, opacity 80–95%, whichever lets the knit texture show through while
+   the digits stay Snow Ivory. Add a small Inner Shadow (2 px, 30%) to sit it in the wool.
+4. Thumbnail Test: the card at 64 px must read "11:59".
+
+### Card lettering
+
+1. `T Peace on Earth`: warm serif, Hearth Brown `#6B4A35` on the cream border or a calm wall area, top third.
+2. `T and a successful upload.`: same serif, 35–40% of the headline size, Evergreen `#23402F`, directly under.
+3. Neither line may cover the face or the chest digits.
+
+## 5. Export
+
+| Image | File | Size | Format |
+|---|---|---|---|
+| Image 1 Sweater Design | `work/exports/IMAGE1_SWEATER_1159.png` | 2400 x 2400 | PNG, sRGB |
+| Image 2 Finished Card | `work/exports/IMAGE2_CARD_1159.png` | 1500 x 2100 | PNG, sRGB |
+
+1. File > Export > Export As → PNG, **Convert to sRGB** on.
+2. If a file is over the Devpost upload limit (**Verify** the limit on the submission form), export JPEG
+   quality 90 instead, same pixel size.
+3. Keep Content Credentials if Photoshop offers it (**Verify**).
+4. Never upscale with Generative Upscale (it is Firefly, not Nano Banana). Plain Image Size resampling only.
+
+## 6. Layers Screenshot recipe
+
+1. Open `CARD_1159.psd` (the final version).
+2. Widen the Layers panel to about one third of the screen. Panel menu > Panel Options > **Medium** thumbnails.
+3. Expand every group. Make sure these are visible in the list: `10 REFERENCE (hidden)` with
+   `SO SWEATER_1159`, the `GF …` layers, the hidden `owner photo original`, the `T …` type layers.
+4. Select one Nano Banana layer (e.g. `GF C03 dress`) so the **Properties** panel shows its prompt (and model
+   if shown — **Verify**).
+5. Take the screenshot (macOS Cmd+Shift+4, Windows Win+Shift+S).
+6. Crop out the account avatar, email address and any other personal data. Save as
+   `work/exports/LAYERS_CARD_1159.png`.
+7. Optional: do the same for `SWEATER_1159.psd` with `50 TYPE` expanded to show the hidden `T 11:59`.
