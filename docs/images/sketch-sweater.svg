@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-labelledby="t d">
+  <title id="t">Composition sketch: Sweater Design (not a contest asset)</title>
+  <desc id="d">Grey wireframe showing where each Joke Hierarchy tier sits on the flat-lay sweater. Placement only.</desc>
+  <style>
+    .bg{fill:#f4f2ee}.box{fill:#e3e0da;stroke:#8a857c;stroke-width:3}.zone{fill:#d3cfc7;stroke:#5e5a53;stroke-width:3;stroke-dasharray:12 8}
+    .lbl{font:600 22px ui-monospace,Menlo,monospace;fill:#3b3832}.sm{font:500 20px ui-monospace,Menlo,monospace;fill:#55514a}
+    .big{font:700 120px ui-monospace,Menlo,monospace;fill:#8a857c}.ban{fill:#3b3832}.bt{font:700 26px ui-monospace,Menlo,monospace;fill:#f4f2ee;letter-spacing:2px}
+  </style>
+  <rect class="bg" width="1000" height="1000"/>
+  <!-- sweater silhouette: body + sleeves -->
+  <path class="box" d="M330 170 L420 140 Q500 175 580 140 L670 170 L900 330 L860 470 L720 400 L720 860 L280 860 L280 400 L140 470 L100 330 Z"/>
+  <rect class="zone" x="270" y="215" width="460" height="55"/>
+  <text class="sm" x="500" y="250" text-anchor="middle">TIER 3 · shoulder Fair Isle (S02)</text>
+  <rect class="zone" x="270" y="295" width="460" height="200"/>
+  <text class="big" x="500" y="430" text-anchor="middle">11:59</text>
+  <text class="lbl" x="500" y="480" text-anchor="middle">TIER 1 · reads at 64 px (S03)</text>
+  <rect class="zone" x="330" y="520" width="340" height="70"/>
+  <rect x="345" y="540" width="300" height="30" fill="#b2ada4"/>
+  <text class="sm" x="500" y="615" text-anchor="middle">TIER 2 · bar at 97% + bell · 128 px (S04)</text>
+  <path class="zone" d="M150 400 L270 360 M760 360 L870 400" fill="none"/>
+  <text class="sm" x="60" y="520">TIER 3 · cables</text>
+  <text class="sm" x="60" y="545">(S05)</text>
+  <text class="sm" x="760" y="520">TIER 3 · cables</text>
+  <text class="sm" x="760" y="545">(S05)</text>
+  <rect class="zone" x="300" y="770" width="400" height="60"/>
+  <text class="sm" x="500" y="808" text-anchor="middle">TIER 3 · hem band (S08)</text>
+  <rect class="zone" x="560" y="690" width="130" height="55"/>
+  <text class="sm" x="625" y="724" text-anchor="middle">tag (S06)</text>
+  <text class="sm" x="500" y="900" text-anchor="middle">2400 x 2400 px flat-lay · top-down · background #F2EADB</text>
+  <rect class="ban" x="0" y="0" width="1000" height="60"/>
+  <text class="bt" x="500" y="40" text-anchor="middle">COMPOSITION SKETCH — NOT A CONTEST ASSET</text>
+  <rect class="ban" x="0" y="940" width="1000" height="60"/>
+  <text class="bt" x="500" y="980" text-anchor="middle">COMPOSITION SKETCH — NOT A CONTEST ASSET</text>
+</svg>
