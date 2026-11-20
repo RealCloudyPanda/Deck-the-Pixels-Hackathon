@@ -1,7 +1,7 @@
 # Submission drafts — The 11:59 Sweater
 
 Draft your Devpost answers in your own words from the [Generation Log](GEN_LOG.md) and the final files.
-Replace every `[[PLACEHOLDER: …]]` with a recorded fact and remove any step you skipped or changed.
+Replace every `[[PLACEHOLDER: …]]` with a recorded fact. Rewrite steps you changed and remove any you skipped.
 
 ## Title
 
@@ -40,7 +40,7 @@ The card is a 1500 x 2100 px portrait (5 x 7 in at 300 ppi). I started from my o
 
 The sweater had to match Image 1 exactly, so I never regenerated it from text. I extended the canvas 1500 px to the right, placed the finished sweater PSD there as a linked Smart Object, selected across my torso and the reference in one selection, and prompted Nano Banana to "dress the person on the left in exactly the sweater shown on the right". Then I hid the reference and cropped the canvas back. The hidden reference layer is visible in my Layers screenshot. [[PLACEHOLDER: how many attempts the dress step took and what you fixed with small follow-up selections]].
 
-The "11:59" on my chest is the same type layer as in Image 1, warped to the folds with a Multiply blend so the digits are identical. The headline "Peace on Earth" and the small "and a successful upload." are type too. The border, laptop-with-a-bow and cocoa were further small Nano Banana generations. The card took [[PLACEHOLDER: total card generations from the log]] generations.
+I copied the "11:59" type layer from Image 1 and warped it to follow the folds, keeping the digits ivory. The headline "Peace on Earth" and the small "and a successful upload." are type too. The border, laptop-with-a-bow and cocoa were further small Nano Banana generations. The card took [[PLACEHOLDER: total card generations from the log]] generations.
 ```
 
 ## Top Banana paragraph (technique)

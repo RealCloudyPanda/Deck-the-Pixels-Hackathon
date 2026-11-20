@@ -222,11 +222,12 @@ picker, attach `IMAGE1_SWEATER_1159.png` as a reference **as well** and use the 
 The generated sweater on the body will have soft or drifted digits. The digits are **Hand-set Lettering**,
 so they are re-applied from type:
 
-1. Copy `T 11:59` (and `T PM`) from `SWEATER_1159.psd` into `60 LETTERING`. Name it `T 11:59 chest overlay`.
+1. Copy `T 11:59` (and `T PM`) from the locked sweater PSD into `60 LETTERING`. Show the copied layers
+   and name the digit layer `T 11:59 chest overlay`.
 2. Scale to the chest; Edit > Transform > **Warp** (or Puppet Warp on a Smart Object copy) so it follows the
    folds of the sweater.
-3. Blend mode **Multiply** or **Overlay**, opacity 80–95%, whichever lets the knit texture show through while
-   the digits stay Snow Ivory. Add a small Inner Shadow (2 px, 30%) to sit it in the wool.
+3. Use **Normal** at 100% with Snow Ivory `#F2EADB` for the digits. Add a small Inner Shadow (2 px, 30%)
+   if the lettering needs depth against the wool.
 4. Thumbnail Test: the card at 64 px must read "11:59".
 
 ### Card lettering
