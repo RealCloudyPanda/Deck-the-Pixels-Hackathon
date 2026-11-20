@@ -1,0 +1,21 @@
+# dependencies and builds
+node_modules/
+dist/
+.vite/
+coverage/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# env (never used, never committed)
+.env
+.env.*
+
+# Contest working files stay OUT of git: they are the owner's own Photoshop work,
+# submitted directly to Devpost. Keep them in a local folder such as work/.
+work/
+*.psd
+*.psb
+exports/
