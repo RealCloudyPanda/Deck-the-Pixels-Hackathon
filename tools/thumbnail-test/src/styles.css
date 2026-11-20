@@ -749,7 +749,7 @@ h1 {
   color: var(--ink);
 }
 .tally-dialog::backdrop {
-  background: var(--ink);
+  background: var(--ink, #1e1b18);
 }
 .reveal {
   display: grid;
