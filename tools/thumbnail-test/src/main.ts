@@ -8,6 +8,7 @@ import './styles.css';
 import { mountChecks } from './ui/checks';
 import { mountIntake } from './ui/intake';
 import { mountLadder } from './ui/ladder';
+import { mountTally } from './ui/tally';
 
 function byId<T extends HTMLElement>(id: string): T {
   const el = document.getElementById(id);
@@ -26,3 +27,4 @@ const announce = (msg: string): void => {
 mountIntake(byId('intake-slots'), announce);
 mountChecks(byId('checks-bar'), byId('ladder'));
 mountLadder(byId('ladder-rows'));
+mountTally(byId('tally-body'), announce);
