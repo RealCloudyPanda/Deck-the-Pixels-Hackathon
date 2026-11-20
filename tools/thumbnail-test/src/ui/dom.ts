@@ -1,0 +1,20 @@
+type Attrs = Record<string, string | boolean | number | undefined>;
+
+/** Tiny element helper: h('button', { class: 'btn', type: 'button' }, 'Label') */
+export function h<K extends keyof HTMLElementTagNameMap>(
+  tag: K,
+  attrs: Attrs = {},
+  ...children: (Node | string | null | undefined | false)[]
+): HTMLElementTagNameMap[K] {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v === undefined || v === false) continue;
+    if (v === true) el.setAttribute(k, '');
+    else el.setAttribute(k, String(v));
+  }
+  for (const c of children) {
+    if (c === null || c === undefined || c === false) continue;
+    el.append(c);
+  }
+  return el;
+}
