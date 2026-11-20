@@ -6,6 +6,7 @@ import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import './styles.css';
 import { mountIntake } from './ui/intake';
+import { mountLadder } from './ui/ladder';
 
 function byId<T extends HTMLElement>(id: string): T {
   const el = document.getElementById(id);
@@ -22,3 +23,4 @@ const announce = (msg: string): void => {
 };
 
 mountIntake(byId('intake-slots'), announce);
+mountLadder(byId('ladder-rows'));

@@ -498,3 +498,63 @@ h1 {
   font-size: var(--step--1);
   color: var(--pine);
 }
+
+/* ---------- ladder ---------- */
+
+.ladder__rows {
+  border-radius: var(--radius-l);
+  background: var(--paper-raised);
+  box-shadow: var(--shadow-1);
+  border: 1px solid transparent;
+  overflow: hidden;
+  transition: background-color var(--dur) ease;
+}
+.rung {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: var(--space-5);
+  padding: var(--space-5);
+  align-items: start;
+}
+.rung + .rung {
+  border-top: 1px solid var(--rule);
+}
+.rung__label {
+  display: grid;
+  gap: var(--space-1);
+}
+.rung__px {
+  font-size: var(--step-2);
+  font-weight: 500;
+  line-height: 1;
+}
+.rung__thumbs {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.thumb {
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+.thumb__frame {
+  position: relative;
+  line-height: 0;
+}
+.thumb__img {
+  display: block;
+  outline: 1px solid oklch(0 0 0 / 0.1);
+  outline-offset: -1px;
+}
+.thumb__empty {
+  border: 1.5px dashed var(--rule);
+  border-radius: 4px;
+  max-width: 100%;
+}
+.thumb__cap {
+  font-size: var(--step--1);
+  color: var(--ink-3);
+}
