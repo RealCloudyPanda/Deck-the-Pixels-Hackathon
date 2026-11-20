@@ -1,6 +1,6 @@
 import { checkDimensions, checkFile, formatBytes, SLOT_SPECS, type Issue, type SlotKind } from '../lib/validate';
 import { h } from './dom';
-import { getState, setImage, subscribe, type LoadedImage } from './store';
+import { getState, setImage, subscribe, visibleImages, type LoadedImage } from './store';
 
 const KINDS: SlotKind[] = ['sweater', 'card'];
 
@@ -10,12 +10,6 @@ export async function decode(url: string): Promise<HTMLImageElement> {
   img.src = url;
   await img.decode();
   return img;
-}
-
-/** Called when the owner loads a real image; Sample Mode hooks in here. */
-let onRealImage: (kind: SlotKind) => void = () => {};
-export function setOnRealImage(fn: (kind: SlotKind) => void): void {
-  onRealImage = fn;
 }
 
 const requests: Record<SlotKind, number> = { sweater: 0, card: 0 };
@@ -59,7 +53,6 @@ async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => v
     sample: false,
     issues: [...fileIssues, ...checkDimensions(kind, img.naturalWidth, img.naturalHeight)],
   };
-  onRealImage(kind);
   setImage(kind, loaded);
   announce(`${SLOT_SPECS[kind].label} loaded: ${loaded.width} by ${loaded.height} pixels.`);
 }
@@ -83,7 +76,7 @@ function issueList(issues: Issue[]): HTMLElement | null {
 
 function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
   const spec = SLOT_SPECS[kind];
-  const image = getState().images[kind];
+  const image = visibleImages(getState())[kind];
   const error = pendingErrors[kind];
   const inputId = `file-${kind}`;
 

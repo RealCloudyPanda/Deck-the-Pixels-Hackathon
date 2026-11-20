@@ -11,7 +11,7 @@ import {
   type Verdict,
 } from '../lib/tally';
 import { h } from './dom';
-import { getState, subscribe } from './store';
+import { getState, subscribe, visibleImages } from './store';
 import { stepDown } from './render';
 
 const REVEAL_SECONDS = 3;
@@ -47,7 +47,10 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     render();
   };
 
-  const subject = () => getState().images.card ?? getState().images.sweater;
+  const subject = () => {
+    const { card, sweater } = visibleImages(getState());
+    return card ?? sweater;
+  };
 
   const startReveal = (name: string): void => {
     phase = { kind: 'reveal', name, left: REVEAL_SECONDS };

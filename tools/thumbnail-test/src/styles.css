@@ -903,23 +903,6 @@ h1 {
   }
 }
 
-/* ---------- sample mode ---------- */
-
-.is-sample .rung:nth-child(n + 3) .thumb__frame::before {
-  content: 'Sample';
-  position: absolute;
-  top: 4px;
-  left: 4px;
-  z-index: 1;
-  padding: 1px 5px;
-  border-radius: 3px;
-  background: var(--gold-tint);
-  color: var(--gold);
-  font: 500 10px/1.4 var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
 /* ---------- polish ---------- */
 
 .hint,

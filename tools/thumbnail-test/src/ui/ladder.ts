@@ -1,7 +1,7 @@
 import { LADDER } from '../lib/ladder';
 import { SLOT_SPECS, type SlotKind } from '../lib/validate';
 import { h } from './dom';
-import { getState, subscribe, type AppState } from './store';
+import { getState, subscribe, visibleImages, type AppState } from './store';
 import { stepDown } from './render';
 
 const KINDS: SlotKind[] = ['sweater', 'card'];
@@ -20,7 +20,7 @@ export function addDecorator(fn: Decorator): void {
 }
 
 function cell(state: AppState, kind: SlotKind, size: number): HTMLElement {
-  const image = state.images[kind];
+  const image = visibleImages(state)[kind];
   const spec = SLOT_SPECS[kind];
   if (!image) {
     const ph = h('div', {
@@ -37,7 +37,7 @@ function cell(state: AppState, kind: SlotKind, size: number): HTMLElement {
   canvas.setAttribute('role', 'img');
   canvas.setAttribute('aria-label', `${spec.label} at ${size} pixels wide`);
   const frame = h('div', { class: 'thumb__frame' }, canvas);
-  const figure = h('figure', { class: 'thumb' }, frame, h('figcaption', { class: 'thumb__cap' }, spec.label));
+  const figure = h('figure', { class: 'thumb' }, frame, h('figcaption', { class: 'thumb__cap' }, spec.label, image.sample ? ' · Sample' : ''));
   for (const d of decorators) d(figure, canvas, kind, size);
   return figure;
 }
@@ -56,12 +56,15 @@ export function mountLadder(root: HTMLElement): void {
   };
   subscribe((s) => {
     // only re-render when images change, checks are pure CSS
-    const key = KINDS.map((k) => s.images[k]?.url ?? '').join('|');
+    const key = imageKey(s);
     if (key !== lastKey) {
       lastKey = key;
       render(s);
     }
   });
-  let lastKey = KINDS.map((k) => getState().images[k]?.url ?? '').join('|');
+  function imageKey(state: AppState): string {
+    return KINDS.map((k) => visibleImages(state)[k]?.url ?? '').join('|');
+  }
+  let lastKey = imageKey(getState());
   render(getState());
 }
