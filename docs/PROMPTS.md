@@ -214,3 +214,150 @@ Outline the digits with tiny knitted-in Christmas light bulbs that glow warm whi
 - **Reject if:** glow blurs the colon or the digit counters.
 
 **Sweater total:** about 15–26 Generations; the plan allows 35 (Nov 20–26).
+
+---
+
+# Part 2 — Finished Card (`CARD_1159.psd`, 1500 x 2100 px)
+
+Start only after the Sweater Design is exported as Image 1 ([ADR 0001](adr/0001-lock-sweater-before-card.md)).
+
+## C01 Panda Self
+
+- **Goal:** the owner's own likeness, restyled into a messy brown panda look, face still recognisable.
+  The only likeness allowed in either image.
+- **Selection:** on the owner's own photo layer: Select Subject, then Expand **120 px**, feather 15 px
+  (subject plus generous margin so hair and ears have room).
+- **Budget:** 4–6 (variant A and B are an A/B pair; try both before choosing)
+
+Variant A (styled human):
+
+```
+Restyle this person for a cosy holiday portrait with a messy brown panda look: fluffy brown panda-ear beanie, soft brown-and-cream panda face paint around the eyes, messy hair. Keep the same face, identity, expression and pose. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+Variant B (soft 3D character):
+
+```
+Turn this person into a stylised soft 3D brown panda character that keeps their facial features, hairstyle and expression, same pose. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+- **Keep if:** the owner recognises themself, the panda look reads at 256 px, hands and shoulders intact.
+- **Reject if:** identity drifts, a second face appears, any text on clothing.
+
+## C02 Room
+
+- **Goal:** the sincere setup: a calm, warm living room at night.
+- **Selection:** Select Subject → Select > Inverse → Select > Modify > Contract **20 px**, feather 10 px.
+  If the area is over ~1500 px on its long side, do top and bottom halves with overlap.
+- **Budget:** 2–4
+
+```
+A calm, wholesome living room at night for a holiday card portrait: softly glowing Christmas tree with warm white lights, a window with gentle snowfall, a wooden mantel with candles and pine garland, shallow depth of field, warm cream and pine green tones. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+Variant:
+
+```
+Behind the person, a cosy night-time living room photographed with a shallow depth of field: a decorated tree with warm white lights on the left, a snowy window, candles on a wooden mantel, soft warm light, calm and quiet. Keep the person unchanged. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+- **Keep if:** no people or faces in the background, light direction matches the portrait.
+- **Reject if:** a second person, a TV screen with content, framed photos of people.
+
+## C03 Dress (Reference Layer technique)
+
+- **Goal:** the Panda Self wears exactly the Image 1 sweater. Steps in [RUNBOOK](RUNBOOK.md#c03-dress--the-reference-layer-technique).
+- **Selection:** canvas temporarily extended 1500 px to the right with the **Reference Layer** visible there.
+  Lasso the torso and arms of the person **and** a band across the reference sweater in one selection
+  (Shift-drag to add). Feather 12 px.
+- **Budget:** 4–6
+
+```
+Dress the person on the left in exactly the sweater shown on the right: same cranberry wool, same Fair Isle bands, same progress bar and bell, same cables on the sleeves, same hem tag. Keep the person's face, pose and the room unchanged. Fit the sweater naturally to the body with folds and the room's warm light. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+Variant:
+
+```
+Copy the knitted sweater on the right onto the person on the left so it fits their body: identical colours, bands, chest progress bar with bell, and sleeve cables, with natural folds. Leave the chest centre plain red where the digits go. Do not change the face, hands or background. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+- **Keep if:** colours, bands, bar and cables match Image 1; the digits are re-applied as type afterwards anyway.
+- **Reject if:** face changes, sweater drifts to a different design.
+
+## C04 Fix
+
+- **Goal:** clean seams at hands, cuffs and edges.
+- **Selection:** small Lasso around the problem area + 40 px, feather 8 px.
+- **Budget:** 1–3
+
+```
+Fix this area so the sleeve cuff and hand look natural; keep the sweater pattern unchanged. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+## C05 Border
+
+- **Goal:** a vintage card frame.
+- **Selection:** Select All, then Select > Modify > Contract **90 px**, then Select > Inverse (a 90 px frame).
+  Feather 0. If the frame fails as one generation, do two halves (top + right, bottom + left).
+- **Budget:** 1–2
+
+```
+A vintage holiday card border: thin gold foil line, small pine sprigs in the corners, cream paper texture. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+## C06 Props
+
+- **Goal:** the card extra tier (laptop with bow, cocoa).
+- **Selection:** Lasso on the sofa cushion ~400 x 260 px + 60 px; second Lasso on the side table ~260 x 260 px + 60 px.
+- **Budget:** 2
+
+```
+A closed plain silver laptop with no logo, wrapped with a red satin bow, resting on the sofa cushion. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+```
+A mug of cocoa with gentle steam on the side table. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+```
+
+- **Reject if:** any logo or mark on the laptop or mug.
+
+**Card total:** about 14–23 Generations.
+
+---
+
+# Generation Budget calendar
+
+Free Photoshop web: **5 Generations per day** (official rules page, read 2026-11-18). Nov 20 → Dec 7 is
+17 full days plus the deadline morning.
+
+| Dates | Phase | Generations | Exit criterion |
+|---|---|---|---|
+| Nov 20–22 | Sweater base + bands (S01, S02, S08) | 15 | Base sweater kept, bands read as Fair Isle |
+| Nov 23–25 | Chest joke (S03, S04, S07) + Thumbnail Test | 15 | Tier 1 reads at 64 px, tier 2 at 128 px |
+| Nov 26 | Sleeves + tag (S05, S06); **export Image 1** | 5 | Sweater locked (ADR 0001) |
+| Nov 27–28 | Panda Self (C01 A/B) | 10 | Likeness kept, look approved |
+| Nov 29–Dec 1 | Room + dress (C02, C03) | 15 | Sweater on body matches Image 1 |
+| Dec 2 | Fixes, border, props (C04–C06) | 5 | No visible seams at 100% |
+| Dec 3–5 | Reserve / redo weakest tier; Tally with 3 people | 15 | ≥ 2/3 testers name the joke |
+| Dec 6 | Export, Layers Screenshot, Written Answers | 0–5 | Checklist complete |
+| Dec 7 (before 12:00 ET) | Submit with 4 h margin | 0 | Submitted |
+
+Unused Generations do not carry over (they reset daily), so spend reserve days on the weakest tier.
+
+## Trial-week rule
+
+If by **Nov 29** the reserve is projected short, the owner (never the kit, never automated) starts the
+7-day free trial on **Nov 30** to cover Nov 30–Dec 6, and sets a reminder to cancel on **Dec 5**.
+Partner models may cost premium generative credits even in the trial (**Verify** in the account).
+
+## When a generation fails
+
+| Symptom | Do this next | Costs |
+|---|---|---|
+| Result looks pasted on, hard edge | **Reselect wider** (+50% margin), feather +5 px, same prompt | 1 |
+| Model ignored part of the prompt | **Simplify the prompt**: one change per generation, use the Variant | 1 |
+| Area too big, soft or low detail | **Split the selection** into overlapping halves ≤ 1500 px | 2 |
+| Almost right, one small flaw | **Accept and fix with C04** on a small selection, or mask by hand | 0–1 |
+| Two rejects in a row on the same step | **Stop for the day.** Rewrite the prompt offline, log both rejects | 0 |
+| Text or a logo appeared | Mask it out by hand (Remove tool / clone is fine) and re-run only if it is in a tier 1–2 area | 0–1 |
