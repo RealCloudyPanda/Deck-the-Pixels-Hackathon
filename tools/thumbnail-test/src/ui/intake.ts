@@ -84,7 +84,7 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
     input.value = '';
   });
 
-  const choose = h('button', { type: 'button', class: 'btn' }, image ? 'Replace file' : 'Choose file');
+  const choose = h('button', { type: 'button', class: 'btn' }, image && !image.sample ? 'Replace file' : 'Choose file');
   choose.addEventListener('click', () => input.click());
 
   const preview = image
@@ -97,6 +97,7 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
       );
 
   const drop = h('div', { class: 'drop', style: `aspect-ratio: ${spec.aspect[0]} / ${spec.aspect[1]}` }, preview);
+  drop.addEventListener('click', () => input.click());
   drop.addEventListener('dragover', (e) => {
     e.preventDefault();
     drop.classList.add('is-over');
@@ -125,7 +126,11 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
       : h('p', { class: 'slot__meta hint' }, 'Nothing loaded yet.');
 
   const issues = image ? image.issues : (error?.issues ?? []);
-  const ok = image && !issues.length ? h('p', { class: 'slot__ok' }, 'Size and format look right.') : null;
+  const ok = image?.sample
+    ? h('p', { class: 'slot__sample' }, 'Composition sketch, not a contest asset. Choose your export to test it.')
+    : image && !issues.length
+      ? h('p', { class: 'slot__ok' }, 'Size and format look right.')
+      : null;
 
   return h(
     'article',

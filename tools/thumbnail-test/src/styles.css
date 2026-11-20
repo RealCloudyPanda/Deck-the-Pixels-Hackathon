@@ -399,9 +399,18 @@ h1 {
 }
 .slot {
   display: grid;
-  gap: var(--space-3);
+  grid-template-columns: 112px minmax(0, 1fr);
+  column-gap: var(--space-4);
+  row-gap: var(--space-2);
   padding: var(--space-4);
   align-content: start;
+}
+.slot > * {
+  grid-column: 2;
+}
+.slot > .drop {
+  grid-column: 1;
+  grid-row: 1 / span 4;
 }
 .slot__head {
   display: flex;
@@ -419,15 +428,18 @@ h1 {
   position: relative;
   display: grid;
   place-items: center;
-  max-height: 220px;
-  margin-inline: auto;
-  width: 100%;
-  max-width: calc(220px * 1);
+  width: 112px;
+  cursor: pointer;
   border-radius: var(--radius-m);
   background: var(--paper-sunk);
   border: 1.5px dashed var(--rule);
   overflow: hidden;
   transition: border-color var(--dur) ease, background-color var(--dur) ease;
+}
+@media (hover: hover) {
+  .drop:hover {
+    border-color: var(--ink-3);
+  }
 }
 .drop.is-over {
   border-color: var(--cranberry);
@@ -448,11 +460,17 @@ h1 {
 }
 .drop__big {
   font-weight: 500;
+  font-size: var(--step--1);
+  line-height: 1.3;
   color: var(--ink-2);
+}
+.drop__empty .hint {
+  font-size: 0.6875rem;
 }
 .slot__meta {
   display: flex;
-  gap: var(--space-3);
+  flex-wrap: wrap;
+  column-gap: var(--space-3);
   font-size: var(--step--1);
   color: var(--ink-2);
   min-width: 0;
@@ -462,7 +480,7 @@ h1 {
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
-  flex: 1;
+  flex: 1 1 100%;
   color: var(--ink);
 }
 .issues {
@@ -493,6 +511,10 @@ h1 {
 }
 .issue--error .issue__tag {
   color: var(--cranberry);
+}
+.slot__sample {
+  font-size: var(--step--1);
+  color: var(--gold);
 }
 .slot__ok {
   font-size: var(--step--1);
