@@ -15,11 +15,11 @@ upload frozen at 97%.
 
 ## The problem
 
-One student, finals season, a free Photoshop web account: **5 Nano Banana generations per day**
-(official rules page) and 17 days to the deadline. The entry has to win on an ugly-sweater joke that
-judges and community voters first see in a gallery grid, at about 128 px wide. Spending a scarce
+One student, finals season, a free Photoshop web account with **5 generations per day**, and 17 days
+to the deadline. The sweater joke needs to read in a small gallery preview, which the tool approximates
+at 128 px wide. Spending a scarce
 generation on an improvised prompt, or finding out on deadline day that "11:59" turns into mush at
-thumbnail size, loses the entry.
+thumbnail size, costs time. [Official contest rules](https://deckthepixels.devpost.com/rules)
 
 ## What it does
 
@@ -36,16 +36,16 @@ thumbnail size, loses the entry.
 ## The demo moment
 
 Drop the exported Sweater Design into the Thumbnail Test and look at the **64 px** rung. If "11:59"
-still reads there, tier 1 of the joke survives the gallery. Turn on **Grayscale** and **Squint**: if the
-digits still separate from the red wool, the contrast rule held. Then hand the laptop to a friend,
-press **Show for 3 seconds**, and type what they say the joke is.
+still reads there, tier 1 of the joke survives the gallery. Turn on **Grayscale** and **Squint** to see
+if the digits still separate from the red wool. Press **Show for 3 seconds** as you hand the screen
+to a friend. A dialog covers the ladder and shows the Finished Card at 128 px, or the Sweater Design
+if you’ve only loaded that export. When the thumbnail disappears, type what your friend saw.
 
 | Grayscale + squint + approximate 3:2 crop | Three-person Tally |
 |---|---|
-| ![Size ladder with grayscale, blur and the 3:2 crop overlay switched on](docs/images/tool-checks.png) | ![Tally panel mid-reveal, two sample answers marked Got it and Partly](docs/images/tool-tally.png) |
+| ![Composition sketches in the size ladder with grayscale, blur and the 3:2 crop overlay switched on](docs/images/tool-checks.png) | ![Earlier Tally panel in Sample Mode, with two practice answers](docs/images/tool-tally.png) |
 
-The answers in the Tally screenshot were typed during screen capture to show the flow and then
-cleared; they are not test results.
+These screenshots show an earlier build in Sample Mode. The Tally answers were entered to illustrate the controls.
 
 ## How it works
 
@@ -96,10 +96,11 @@ Other scripts: `npm test` (Vitest), `npm run typecheck`, `npm run build` (static
 |---|---|---|
 | What loads | The two Composition Sketches, with a "Sample" ribbon and badges | Your exported PNG/JPEG, chosen or dropped per slot |
 | Validation | Skipped (they are sketches) | Type, size (> 5 MB warning), pixel size, 1:1 and 5:7 aspect |
-| Turning it off | The switch in the header | Loading any real image switches Sample Mode off |
+| Switching modes | Turning Sample Mode off restores any exports you loaded in this tab | Loading any real image switches Sample Mode off |
+| Tally | Practice answers stay in this tab | Recorded answers can be copied as Markdown |
 
-Nothing needs a key, an account or a network connection. Images are read in the browser and never
-uploaded. Only the Tally and the budget counter are saved, in this browser's localStorage.
+After setup, the tool runs locally without a key, account or network connection. Images stay in the
+browser tab. The Tally for your exports, the budget counter and the Sample Mode preference use localStorage.
 
 ## Judging criteria → where to see proof
 
@@ -107,7 +108,7 @@ uploaded. Only the Tally and the budget counter are saved, in this browser's loc
 |---|---|
 | Technological implementation | The three Nano Banana techniques in [RUNBOOK](docs/RUNBOOK.md#c03-dress--the-reference-layer-technique) and [PROMPTS](docs/PROMPTS.md); the Layers Screenshot recipe that shows them in the submitted file |
 | Innovation / idea | The joke and its tiered Read Sizes in [BRIEF](docs/BRIEF.md); the sincere card frame with the punchline on the sweater |
-| Design | Palette and contrast rule in [BRIEF](docs/BRIEF.md#palette); the [Composition Sketches](docs/images/sketch-sweater.svg); legibility proven with the Thumbnail Test |
+| Design | Palette and contrast rule in [BRIEF](docs/BRIEF.md#palette); the [Composition Sketches](docs/images/sketch-sweater.svg); the Thumbnail Test for checking the final exports |
 | Rules compliance | [SUBMISSION — rules compliance](docs/SUBMISSION.md#rules-compliance) |
 
 ## Project structure
@@ -136,8 +137,6 @@ uploaded. Only the Tally and the budget counter are saved, in this browser's loc
   Content Credentials on web exports, and the Devpost upload size limit. Confirmed from the official rules
   page (read 2026-11-18): the 5-per-day free limit, and that Nano Banana is used by selecting it as the
   Generative Fill model.
-- The Devpost pages returned HTTP 403 to automated fetches, so contest facts must be re-read on the live
-  rules page before submitting.
 - The 3:2 crop overlay is an approximation of gallery cards, not Devpost's exact crop.
 - The RMS contrast number is a heuristic (higher is punchier), not a WCAG ratio.
 - Thumbnails are drawn at 1 canvas pixel per CSS pixel, so on high-DPI screens they look slightly softer
