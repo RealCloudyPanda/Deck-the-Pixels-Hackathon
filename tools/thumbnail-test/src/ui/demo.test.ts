@@ -157,4 +157,24 @@ describe('Thumbnail Test demo', () => {
       { answer: 'A deadline upload stalled', verdict: 'partly' },
     ] });
   });
+  it('starts fresh for replacement bytes and restores an identical earlier revision', async () => {
+    await mount();
+    chooseFile('first.png');
+    await vi.advanceTimersByTimeAsync(0);
+    submit('#tally form');
+    await vi.advanceTimersByTimeAsync(3000);
+    element<HTMLTextAreaElement>('#tally-answer').value = 'Only the final stitch is missing';
+    submit('dialog form');
+    chooseFile('second.png');
+    await vi.advanceTimersByTimeAsync(0);
+    expect(element('#tally').textContent).not.toContain('Only the final stitch');
+    chooseFile('first.png');
+    await vi.advanceTimersByTimeAsync(0);
+    expect(element('#tally').textContent).toContain('Only the final stitch');
+    element<HTMLSelectElement>('#tally-subject').value = 'card';
+    element('#tally-subject').dispatchEvent(new Event('change'));
+    expect(element('#tally').textContent).not.toContain('Only the final stitch');
+    expect(element<HTMLButtonElement>('#tally button[type=submit]').disabled).toBe(true);
+  });
+
 });
