@@ -1,3 +1,4 @@
+import { mountContinuity } from './ui/continuity';
 import '@fontsource/fraunces/600.css';
 import '@fontsource/ibm-plex-sans/400.css';
 import '@fontsource/ibm-plex-sans/500.css';
@@ -32,3 +33,5 @@ mountLadder(byId('ladder-rows'));
 mountTally(byId('tally-body'), announce);
 mountBudget(byId('budget-slot'), announce);
 mountSample(byId<HTMLInputElement>('sample-toggle'), byId('sample-ribbon'), announce);
+
+mountContinuity(byId('continuity'));
