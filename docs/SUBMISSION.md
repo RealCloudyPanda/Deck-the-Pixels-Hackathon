@@ -88,3 +88,17 @@ Three techniques made Nano Banana controllable inside Photoshop. A reference lay
 | Judging (equally weighted, 1–5 each) | Technological Implementation (how thoroughly and skillfully it uses Nano Banana and Photoshop), Innovation/Idea, Design (sweater and card polished and working together). | |
 | Public voting | Dec 18 2026 – Jan 15 2027 for the **Fa-La-La Fan Favorite** prize. One vote per person; vote manipulation, multiple accounts or paying voters can disqualify you. | The brief calls this prize "Community Choice"; the rules page name is Fa-La-La Fan Favorite. |
 | Timeline after the deadline | Judging Jan 4–15 2027; winners around Jan 22. | |
+
+## Optional process video (target 2:30, hard cap 3:00)
+
+Only make this if you screen-recorded real Photoshop sessions while generating. It helps the Technological Implementation score, because judges see the techniques instead of reading about them. Every step shown must be one that is in the Generation Log.
+
+| Time | Picture | Voice-over |
+|---|---|---|
+| 0:00–0:15 | The finished card full screen, then a zoom to the "11:59" on the sweater and the stuck 97% bar. | "Peace on Earth, and a successful upload. This is the worst minute of finals season, knitted into a holiday sweater." |
+| 0:15–0:45 | Recording: the sweater base pass with Nano Banana selected in the Generative Fill model dropdown. | "Every generation uses Nano Banana inside Photoshop's Generative Fill. I built the sweater one selection at a time." |
+| 0:45–1:10 | Recording: live "11:59" type, rasterised copy, expanded selection, the knit result. Toggle the hidden live type layer. | "The joke has to read at thumbnail size, so the digits are real type first, then Nano Banana knits those exact shapes." |
+| 1:10–1:30 | Recording: red guide lines on a notes layer, the prompt, the cables appearing and the lines gone. | "For the sleeve cables I drew red guide lines and asked Nano Banana to follow them, then remove them." |
+| 1:30–2:00 | Recording: canvas extended, the sweater placed as a reference beside the portrait, one selection across both, the dress step, then the reference hidden and the canvas cropped. | "To put the exact same sweater on me in the card, I placed the finished design next to my portrait and asked Nano Banana to copy it, then hid the reference and cropped it away." |
+| 2:00–2:20 | Layers panel scroll, with the hidden reference layer visible in the list. | [[OWNER: total generations from the Generation Log, and one thing that went wrong and how you fixed it.]] |
+| 2:20–2:30 | Both final images side by side. Title. | "The 11:59 Sweater." |
