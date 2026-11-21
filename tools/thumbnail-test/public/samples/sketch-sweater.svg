@@ -16,7 +16,8 @@
   <text class="lbl" x="500" y="480" text-anchor="middle">TIER 1 · reads at 64 px (S03)</text>
   <rect class="zone" x="330" y="520" width="340" height="70"/>
   <rect x="345" y="540" width="300" height="30" fill="#b2ada4"/>
-  <text class="sm" x="500" y="615" text-anchor="middle">TIER 2 · bar at 97% + bell · 128 px (S04)</text>
+  <path d="M635 565 Q665 535 665 570 Q665 600 685 580 M645 535 L685 595" fill="none" stroke="#55514a" stroke-width="5"/>
+  <text class="sm" x="500" y="615" text-anchor="middle">TIER 2 · unfinished stitch + bar · 128 px (S04)</text>
   <path class="zone" d="M150 400 L270 360 M760 360 L870 400" fill="none"/>
   <text class="sm" x="60" y="520">TIER 3 · cables</text>
   <text class="sm" x="60" y="545">(S05)</text>
