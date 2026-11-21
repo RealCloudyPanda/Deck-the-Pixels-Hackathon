@@ -194,7 +194,8 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     const s = summarize(tally);
     const copy = h('button', { type: 'button', class: 'btn', disabled: !tally.entries.length }, 'Copy as Markdown');
     copy.addEventListener('click', async () => {
-      const md = toMarkdown(tally, new Date().toLocaleDateString('en-CA'));
+      const r = revision();
+      const md = [toMarkdown(tally, new Date().toLocaleDateString('en-CA')), '', r ? `Subject: ${r.subject} · File: ${r.name.replace(/\s+/g, ' ')} · ${r.width} × ${r.height} px\nSHA-256: ${r.digest}` : 'Practice sketch: not evidence for an actual export.'].join('\n');
       try {
         await navigator.clipboard.writeText(md);
         copy.textContent = 'Copied';
@@ -213,11 +214,19 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
         announce('Tally reset.');
       }
     });
+    const download = h('button', { type: 'button', class: 'btn', disabled: !tally.entries.length }, 'Export revision + responses');
+    download.addEventListener('click', () => {
+      const data = { version: 2, exportedAt: new Date().toISOString(), revision: revision(), practice: sampleMode, responses: tally.entries };
+      const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+      const link = h('a', { href: url, download: `thumbnail-${selected}-feedback.json` });
+      link.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
     return h(
       'div',
       { class: 'tally__foot' },
       h('p', { class: 'tally__score' }, h('span', { class: 'mono tally__big' }, `${s.got} of ${MAX_TESTERS}`), ' got it'),
-      h('div', { class: 'tally__actions' }, sampleMode ? null : copy, reset),
+      h('div', { class: 'tally__actions' }, sampleMode ? null : copy, sampleMode ? null : download, reset),
       h('p', { class: 'hint' }, sampleMode ? 'Practice answers stay in this tab until you reload.' : 'Private: for your own decisions, never a public metric. Saved only in this browser.'),
     );
   }
