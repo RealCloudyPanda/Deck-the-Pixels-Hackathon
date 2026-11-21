@@ -102,3 +102,17 @@ Only make this if you screen-recorded real Photoshop sessions while generating. 
 | 1:30–2:00 | Recording: canvas extended, the sweater placed as a reference beside the portrait, one selection across both, the dress step, then the reference hidden and the canvas cropped. | "To put the exact same sweater on me in the card, I placed the finished design next to my portrait and asked Nano Banana to copy it, then hid the reference and cropped it away." |
 | 2:00–2:20 | Layers panel scroll, with the hidden reference layer visible in the list. | [[OWNER: total generations from the Generation Log, and one thing that went wrong and how you fixed it.]] |
 | 2:20–2:30 | Both final images side by side. Title. | "The 11:59 Sweater." |
+
+## Devpost form fields (map)
+
+| Devpost field | Where the answer comes from |
+|---|---|
+| Project name | Title above |
+| Elevator pitch / tagline | Tagline above |
+| About the project | Description above, plus the Top Banana paragraph if space allows |
+| Image 1 written answer | "Written Answer — Image 1" above, every `[[PLACEHOLDER` filled from the Generation Log |
+| Image 2 written answer | "Written Answer — Image 2" above, filled the same way |
+| Image uploads | `IMAGE1_SWEATER_1159.png`, `IMAGE2_CARD_1159.png` |
+| Layers screenshot | `LAYERS_CARD_1159.png` |
+| Built with | `adobe-photoshop` · `nano-banana` · `generative-fill` |
+| Video (optional) | YouTube or Vimeo link, only if the process video above was made from real recordings |
