@@ -198,7 +198,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
   function footer(): HTMLElement {
     const tally = currentTally();
     let legacy = emptyTally();
-    try { legacy = deserialize(localStorage.getItem(STORAGE_KEY)); } catch { /* optional archive */ }
+    try { legacy = deserialize(localStorage.getItem(STORAGE_KEY)); } catch {  }
     const legacyCopy = h('button', { type: 'button', class: 'btn btn--quiet', disabled: !legacy.entries.length }, 'Copy legacy unbound archive');
     legacyCopy.addEventListener('click', () => {
       const text = `UNBOUND LEGACY ARCHIVE: image and revision unknown. Do not count toward current readiness.\n\n${toMarkdown(legacy, 'legacy date unknown')}`;

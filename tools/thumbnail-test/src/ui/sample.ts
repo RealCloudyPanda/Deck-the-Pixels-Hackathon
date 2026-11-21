@@ -12,7 +12,7 @@ async function loadSample(kind: SlotKind): Promise<LoadedImage> {
   return { kind, name, url, width: img.naturalWidth, height: img.naturalHeight, bytes: null, img, sample: true, issues: [] };
 }
 
-/** Sample Mode: on by default on first visit, off once the owner loads a real image. */
+
 export function mountSample(toggle: HTMLInputElement, ribbon: HTMLElement, announce: (msg: string) => void): void {
   let mode: boolean | undefined;
   let loading = false;
@@ -20,7 +20,7 @@ export function mountSample(toggle: HTMLInputElement, ribbon: HTMLElement, annou
   try {
     stored = localStorage.getItem(SAMPLE_KEY);
   } catch {
-    /* storage unavailable */
+
   }
 
   subscribe(({ sample, samples }) => {
@@ -33,7 +33,7 @@ export function mountSample(toggle: HTMLInputElement, ribbon: HTMLElement, annou
       try {
         localStorage.setItem(SAMPLE_KEY, sample ? 'on' : 'off');
       } catch {
-        /* storage unavailable */
+
       }
     }
     if (!sample) {

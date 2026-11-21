@@ -37,7 +37,7 @@ export function mountChecks(bar: HTMLElement, ladder: HTMLElement): void {
   );
   apply(getState().checks);
 
-  // Contrast readout under the 128 px rung.
+
   addDecorator((figure, canvas, _kind, size) => {
     if (size !== 128) return;
     const ctx = canvas.getContext('2d');

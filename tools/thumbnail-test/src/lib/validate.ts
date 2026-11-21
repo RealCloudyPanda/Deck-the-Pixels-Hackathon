@@ -1,10 +1,10 @@
-/** Pure checks for images dropped into the Thumbnail Test. No DOM here. */
+
 
 export type SlotKind = 'sweater' | 'card';
 
 export interface SlotSpec {
   label: string;
-  /** width : height */
+
   aspect: readonly [number, number];
   aspectLabel: string;
   expected: string;
@@ -15,10 +15,10 @@ export const SLOT_SPECS: Record<SlotKind, SlotSpec> = {
   card: { label: 'Finished Card', aspect: [5, 7], aspectLabel: '5:7', expected: '1500 × 2100 px' },
 };
 
-/** Warn above this size. The real Devpost upload limit is not confirmed (Verify on the form). */
+
 export const WARN_BYTES = 5 * 1024 * 1024;
 
-/** Relative aspect error tolerated before warning (1%). */
+
 export const ASPECT_TOLERANCE = 0.01;
 
 export type IssueLevel = 'error' | 'warn';
@@ -36,7 +36,7 @@ export function isAcceptedType(name: string, mime: string): boolean {
   return ACCEPTED_EXT.test(name);
 }
 
-/** Checks that can run before the image is decoded. */
+
 export function checkFile(name: string, mime: string, bytes: number): Issue[] {
   const issues: Issue[] = [];
   if (!isAcceptedType(name, mime)) {
@@ -58,7 +58,7 @@ export function aspectError(width: number, height: number, aspect: readonly [num
   return Math.abs(actual - expected) / expected;
 }
 
-/** Checks that need the decoded pixel size. */
+
 export function checkDimensions(kind: SlotKind, width: number, height: number): Issue[] {
   const spec = SLOT_SPECS[kind];
   const issues: Issue[] = [];

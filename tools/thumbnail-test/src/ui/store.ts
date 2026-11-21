@@ -7,7 +7,7 @@ export interface LoadedImage {
   url: string;
   width: number;
   height: number;
-  /** null for bundled samples */
+
   bytes: number | null;
   img: HTMLImageElement;
   sample: boolean;

@@ -1,6 +1,6 @@
 type Attrs = Record<string, string | boolean | number | undefined>;
 
-/** Tiny element helper: h('button', { class: 'btn', type: 'button' }, 'Label') */
+
 export function h<K extends keyof HTMLElementTagNameMap>(
   tag: K,
   attrs: Attrs = {},

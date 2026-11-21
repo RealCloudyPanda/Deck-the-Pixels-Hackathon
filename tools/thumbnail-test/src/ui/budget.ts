@@ -15,7 +15,7 @@ export function mountBudget(root: HTMLElement, announce: (msg: string) => void):
     try {
       localStorage.setItem(BUDGET_KEY, JSON.stringify(state));
     } catch {
-      /* ignore */
+
     }
   };
 

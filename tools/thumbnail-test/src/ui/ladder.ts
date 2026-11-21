@@ -12,7 +12,7 @@ const TIER_NOTE: Record<number, string> = {
   512: 'Tier 3 — the rewards',
 };
 
-/** Extra per-render hooks (legibility checks add the contrast readout). */
+
 type Decorator = (figure: HTMLElement, canvas: HTMLCanvasElement, kind: SlotKind, size: number) => void;
 const decorators: Decorator[] = [];
 export function addDecorator(fn: Decorator): void {
@@ -59,7 +59,7 @@ export function mountLadder(root: HTMLElement): void {
     root.replaceChildren(...rows);
   };
   subscribe((s) => {
-    // only re-render when images change, checks are pure CSS
+
     const key = imageKey(s);
     if (key !== lastKey) {
       lastKey = key;

@@ -1,19 +1,19 @@
-/* Knitting-chart paper: warm paper, faint stitch grid, ink, one cranberry accent, pine for success. */
+
 
 :root {
   --paper: #f6efe3;
   --paper-raised: #fbf7f0;
   --paper-sunk: #efe6d6;
   --ink: #1e1b18;
-  --ink-2: #4a433b; /* secondary text: 8.5:1 on paper */
-  --ink-3: #6b6258; /* tertiary text: 5.2:1 on paper */
+  --ink-2: #4a433b;
+  --ink-3: #6b6258;
   --rule: #d9cdb8;
   --cranberry: #b3263a;
   --cranberry-press: #951d30;
   --cranberry-tint: #f3dcd9;
   --pine: #23402f;
   --pine-tint: #dbe6dc;
-  --gold: #6f5000; /* text-safe gold for warnings, >= 4.5:1 on paper and gold-tint */
+  --gold: #6f5000;
   --gold-tint: #f4e6c2;
   --gallery-dark: #1b1a19;
   --gallery-light: #ffffff;
@@ -22,11 +22,11 @@
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
 
-  --step--1: 0.8125rem; /* 13 */
-  --step-0: 0.9375rem; /* 15 */
-  --step-1: 1.125rem; /* 18 */
-  --step-2: 1.5rem; /* 24 */
-  --step-3: 2.25rem; /* 36 */
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.125rem;
+  --step-2: 1.5rem;
+  --step-3: 2.25rem;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -67,7 +67,7 @@ body {
   line-height: 1.5;
   color: var(--ink);
   background-color: var(--paper);
-  /* faint stitch grid: 12 px cells, a stronger line every 10 stitches */
+
   background-image:
     linear-gradient(to right, rgb(107 74 53 / 0.09) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(107 74 53 / 0.09) 1px, transparent 1px),
@@ -111,7 +111,7 @@ textarea {
   top: var(--space-3);
 }
 
-/* ---------- masthead ---------- */
+
 
 .masthead {
   display: flex;
@@ -153,7 +153,7 @@ h1 {
   gap: var(--space-5);
 }
 
-/* ---------- switch ---------- */
+
 
 .switch {
   display: inline-flex;
@@ -201,7 +201,7 @@ h1 {
   font-weight: 500;
 }
 
-/* ---------- ribbon ---------- */
+
 
 .ribbon {
   padding: var(--space-2) var(--space-7);
@@ -218,7 +218,7 @@ h1 {
   margin-right: var(--space-1);
 }
 
-/* ---------- layout ---------- */
+
 
 .layout {
   display: grid;
@@ -287,7 +287,7 @@ h1 {
   color: var(--ink-3);
 }
 
-/* ---------- buttons ---------- */
+
 
 .btn {
   display: inline-flex;
@@ -390,7 +390,7 @@ h1 {
   }
 }
 
-/* ---------- intake ---------- */
+
 
 .intake__slots {
   display: grid;
@@ -521,7 +521,7 @@ h1 {
   color: var(--pine);
 }
 
-/* ---------- ladder ---------- */
+
 
 .ladder__rows {
   border-radius: var(--radius-l);
@@ -584,7 +584,7 @@ h1 {
   color: var(--ink-3);
 }
 
-/* ---------- checks ---------- */
+
 
 .checks__bar {
   display: flex;
@@ -663,7 +663,7 @@ h1 {
 .ladder.is-dark .thumb__img {
   outline-color: oklch(1 0 0 / 0.1);
 }
-/* approximate 3:2 gallery crop: dim everything outside a centred 3:2 band */
+
 .ladder.is-crop .thumb__frame::after {
   content: '';
   position: absolute;
@@ -693,7 +693,7 @@ h1 {
   color: #f6efe3;
 }
 
-/* ---------- tally ---------- */
+
 
 .tally .section-h {
   font-family: var(--font-display);
@@ -847,7 +847,7 @@ h1 {
   font-weight: 500;
 }
 
-/* ---------- budget ---------- */
+
 
 .budget {
   display: flex;
@@ -921,7 +921,7 @@ h1 {
   }
 }
 
-/* ---------- polish ---------- */
+
 
 .hint,
 .lede,

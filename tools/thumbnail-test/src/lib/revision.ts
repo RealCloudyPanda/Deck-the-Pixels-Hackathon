@@ -17,7 +17,7 @@ export function loadRevision(raw: string | null, revision: Revision): TallyState
 }
 export function saveRevision(raw: string | null, revision: Revision, tally: TallyState): string {
   let archive: Record<string, unknown> = {};
-  try { const parsed: unknown = JSON.parse(raw ?? '{}'); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) archive = parsed as Record<string, unknown>; } catch { /* start a valid archive */ }
+  try { const parsed: unknown = JSON.parse(raw ?? '{}'); if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) archive = parsed as Record<string, unknown>; } catch {  }
   archive[revisionId(revision)] = { ...JSON.parse(serialize(tally)), revision };
   return JSON.stringify(archive);
 }

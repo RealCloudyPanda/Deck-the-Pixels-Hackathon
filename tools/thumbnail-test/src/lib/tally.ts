@@ -1,4 +1,4 @@
-/** The three-person "what's the joke?" Tally. Pure reducer + (de)serialisation; storage lives in the UI. */
+
 
 export const MAX_TESTERS = 3;
 export const STORAGE_KEY = 'thumbnail-test.tally.v1';
@@ -65,7 +65,7 @@ export function serialize(state: TallyState): string {
 
 const VERDICTS = new Set<unknown>(['got', 'partly', 'missed', null]);
 
-/** Parses stored JSON defensively; anything malformed becomes an empty Tally. */
+
 export function deserialize(raw: string | null): TallyState {
   if (!raw) return emptyTally();
   try {
@@ -91,7 +91,7 @@ function cell(text: string): string {
   return text.replace(/\|/g, '\\|').replace(/\s+/g, ' ').trim();
 }
 
-/** Markdown for the owner's notes. Private: not a public metric. */
+
 export function toMarkdown(state: TallyState, date: string): string {
   const s = summarize(state);
   const lines = [

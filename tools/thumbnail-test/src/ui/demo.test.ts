@@ -68,7 +68,7 @@ beforeEach(() => {
   });
   vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({ drawImage: vi.fn() } as unknown as CanvasRenderingContext2D);
 
-  // jsdom lacks the dialog methods. Exercise the app's transitions with the native open-state contract.
+
   Object.defineProperties(HTMLDialogElement.prototype, {
     showModal: { configurable: true, value(this: HTMLDialogElement) { this.open = true; } },
     close: { configurable: true, value(this: HTMLDialogElement) { this.open = false; } },

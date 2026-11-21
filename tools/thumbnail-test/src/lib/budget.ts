@@ -1,14 +1,10 @@
-/**
- * Generation Budget: Nano Banana Generations used today on the free Photoshop web tier.
- * The rules page (read 2026-11-18) states five image generations per day for free accounts.
- * Resets at local midnight.
- */
+
 
 export const DAILY_LIMIT = 5;
 export const BUDGET_KEY = 'thumbnail-test.budget.v1';
 
 export interface BudgetState {
-  /** local calendar date, YYYY-MM-DD */
+
   date: string;
   used: number;
 }
@@ -20,7 +16,7 @@ export function localDateKey(d: Date): string {
   return `${y}-${m}-${day}`;
 }
 
-/** Returns today's state: same-day state is kept, anything older (or malformed) starts at 0. */
+
 export function rollover(state: BudgetState | null, now: Date): BudgetState {
   const today = localDateKey(now);
   if (!state || state.date !== today || !Number.isFinite(state.used)) return { date: today, used: 0 };
@@ -54,7 +50,7 @@ export function parseBudget(raw: string | null): BudgetState | null {
   return null;
 }
 
-/** Milliseconds until the next local midnight. */
+
 export function msUntilMidnight(now: Date): number {
   const next = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
   return next.getTime() - now.getTime();

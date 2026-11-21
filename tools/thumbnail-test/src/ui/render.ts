@@ -1,6 +1,6 @@
 import { halvingSteps, targetSize } from '../lib/ladder';
 
-/** Downscale by repeated halving on canvas; returns a canvas at exactly the target width. */
+
 export function stepDown(img: HTMLImageElement, width: number): HTMLCanvasElement {
   const src = { width: img.naturalWidth, height: img.naturalHeight };
   const target = targetSize(src, width);
