@@ -261,3 +261,18 @@ so they are re-applied from type:
 6. Crop out the account avatar, email address and any other personal data. Save as
    `work/exports/LAYERS_CARD_1159.png`.
 7. Optional: do the same for `SWEATER_1159.psd` with `50 TYPE` expanded to show the hidden `T 11:59`.
+
+## Final-stitch revision review
+
+The physical joke is “one stitch from submitted.” At the right end of the nearly full bar, retain two
+or three live loops on a short needle and a loose ivory yarn tail. Check at 128 px before spending more
+generations on decoration. Carry those same features into the quiet card portrait without extra screens.
+
+Load both actual PNG exports in the Thumbnail Test. Use the continuity workbench to compare digits,
+loose stitch, bar gap, bell, bands and sleeve motifs. Its checkboxes reset on replacement; it supplies no
+similarity score. Pick sweater or card explicitly before each three-second blind reveal. Record the
+person’s exact words before grading. Export revision + responses before replacing a file or clearing storage.
+A new file digest starts a separate tally; reloading the identical bytes restores that revision’s tally.
+
+Readiness counts actual exports only. Sample sketches and practice responses never certify contest
+assets. Capture real Photoshop layer evidence yourself; this kit does not generate or verify that proof.
