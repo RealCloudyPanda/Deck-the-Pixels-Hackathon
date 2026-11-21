@@ -17,12 +17,15 @@ const requests: Record<SlotKind, number> = { sweater: 0, card: 0 };
 
 async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => void): Promise<void> {
   const request = ++requests[kind];
+  loading[kind] = true;
+  rerender();
   if (pendingErrors[kind]) {
     delete pendingErrors[kind];
     rerender();
   }
   const fileIssues = checkFile(file.name, file.type, file.size);
   if (fileIssues.some((i) => i.level === 'error')) {
+    loading[kind] = false;
     renderErrorOnly(kind, file.name, fileIssues);
     announce(`${file.name} was not loaded: ${fileIssues[0]?.message ?? ''}`);
     return;
@@ -35,9 +38,10 @@ async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => v
   } catch {
     URL.revokeObjectURL(url);
     if (request !== requests[kind]) return;
-    const issues: Issue[] = [{ level: 'error', message: 'The browser could not decode this file. Re-export it as PNG.' }];
+    loading[kind] = false;
+    const issues: Issue[] = [{ level: 'error', message: 'The browser could not decode or fingerprint this file. Re-export as PNG and use localhost or HTTPS.' }];
     renderErrorOnly(kind, file.name, issues);
-    announce(`${file.name} could not be decoded.`);
+    announce(`${file.name} could not be loaded or fingerprinted.`);
     return;
   }
   if (request !== requests[kind]) {
@@ -56,10 +60,12 @@ async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => v
     sample: false,
     issues: [...fileIssues, ...checkDimensions(kind, img.naturalWidth, img.naturalHeight)],
   };
+  loading[kind] = false;
   setImage(kind, loaded);
   announce(`${SLOT_SPECS[kind].label} loaded: ${loaded.width} by ${loaded.height} pixels.`);
 }
 
+const loading: Partial<Record<SlotKind, boolean>> = {};
 const pendingErrors: Partial<Record<SlotKind, Issue[]>> = {};
 let rerender: () => void = () => {};
 
@@ -145,6 +151,7 @@ function slot(kind: SlotKind, announce: (msg: string) => void): HTMLElement {
     ),
     drop,
     meta,
+    loading[kind] ? h('p', { role: 'status', class: 'hint' }, 'Loading and fingerprinting replacement…') : null,
     issueList(issues),
     ok,
   );
