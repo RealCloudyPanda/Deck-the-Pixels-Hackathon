@@ -1,6 +1,11 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { STORAGE_KEY } from '../lib/tally';
+import { REVISION_KEY } from '../lib/revision';
+vi.mock('../lib/revision', async (original) => ({
+  ...await original<typeof import('../lib/revision')>(),
+  imageDigest: async (file: File) => `fixture-digest-${file.name}`,
+}));
 
 const decodes = new Map<string, Promise<void>>();
 const revokeObjectURL = vi.fn();
@@ -37,6 +42,8 @@ async function mount() {
 
 beforeEach(() => {
   vi.resetModules();
+  Object.defineProperty(File.prototype, 'arrayBuffer', { configurable: true, value: function(this: File) { return Promise.resolve(new TextEncoder().encode(this.name).buffer); } });
+
   vi.useFakeTimers();
   decodes.clear();
   revokeObjectURL.mockClear();
@@ -146,8 +153,8 @@ describe('Thumbnail Test demo', () => {
     submit('dialog form');
     element('#verdict-0-partly').click();
     expect(document.activeElement?.id).toBe('verdict-0-partly');
-    expect(JSON.parse(localStorage.getItem(STORAGE_KEY)!).entries).toMatchObject([
+    expect(Object.values(JSON.parse(localStorage.getItem(REVISION_KEY)!))[0]).toMatchObject({ entries: [
       { answer: 'A deadline upload stalled', verdict: 'partly' },
-    ]);
+    ] });
   });
 });
