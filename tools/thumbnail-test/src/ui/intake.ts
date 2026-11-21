@@ -1,3 +1,4 @@
+import { imageDigest } from '../lib/revision';
 import { checkDimensions, checkFile, formatBytes, SLOT_SPECS, type Issue, type SlotKind } from '../lib/validate';
 import { h } from './dom';
 import { getState, setImage, subscribe, visibleImages, type LoadedImage } from './store';
@@ -28,8 +29,9 @@ async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => v
   }
   const url = URL.createObjectURL(file);
   let img: HTMLImageElement;
+  let digest: string;
   try {
-    img = await decode(url);
+    [img, digest] = await Promise.all([decode(url), imageDigest(file)]);
   } catch {
     URL.revokeObjectURL(url);
     if (request !== requests[kind]) return;
@@ -44,6 +46,7 @@ async function loadFile(kind: SlotKind, file: File, announce: (msg: string) => v
   }
   const loaded: LoadedImage = {
     kind,
+    digest,
     name: file.name,
     url,
     width: img.naturalWidth,

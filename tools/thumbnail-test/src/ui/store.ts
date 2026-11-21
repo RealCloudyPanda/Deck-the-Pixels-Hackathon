@@ -1,6 +1,7 @@
 import type { Issue, SlotKind } from '../lib/validate';
 
 export interface LoadedImage {
+  digest?: string;
   kind: SlotKind;
   name: string;
   url: string;
