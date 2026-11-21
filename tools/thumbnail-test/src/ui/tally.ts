@@ -25,7 +25,8 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
   let results = emptyTally();
   let selected: SlotKind = 'sweater';
   let archive: string | null = null;
-  try { archive = localStorage.getItem(REVISION_KEY); } catch { /* memory only */ }
+  let storageWarning = false;
+  try { archive = localStorage.getItem(REVISION_KEY); } catch { storageWarning = true; }
   const revision = (): Revision | null => {
     const img = visibleImages(getState())[selected];
     return img?.digest ? { subject: selected, digest: img.digest, name: img.name, width: img.width, height: img.height } : null;
@@ -57,7 +58,8 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
         const r = revision();
         if (r) { archive = saveRevision(archive, r, results); localStorage.setItem(REVISION_KEY, archive); }
       } catch {
-        /* storage full or blocked: keep in memory */
+        storageWarning = true;
+        announce('Browser storage is unavailable. Export responses before closing this tab.');
       }
     }
     render();
@@ -227,6 +229,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       { class: 'tally__foot' },
       h('p', { class: 'tally__score' }, h('span', { class: 'mono tally__big' }, `${s.got} of ${MAX_TESTERS}`), ' got it'),
       h('div', { class: 'tally__actions' }, sampleMode ? null : copy, sampleMode ? null : download, reset),
+      storageWarning ? h('p', { role: 'status', class: 'hint' }, 'Storage unavailable: export responses before closing this tab.') : null,
       h('p', { class: 'hint' }, sampleMode ? 'Practice answers stay in this tab until you reload.' : 'Private: for your own decisions, never a public metric. Saved only in this browser.'),
     );
   }
