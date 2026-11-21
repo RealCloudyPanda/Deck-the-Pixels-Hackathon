@@ -121,16 +121,16 @@ Knit these exact ivory shapes into the red sweater as thick raised intarsia, eac
 - **Budget:** 2–3
 
 ```
-Turn this bar into a sewn-on appliqué progress bar: ivory felt track, red knitted fill that stops just before the end, green chain stitch outline, a small silver jingle bell sewn where the fill stops, as if stuck. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+Turn this bar into a sewn-on appliqué progress bar: ivory felt track, red knitted fill that stops just before the end, green chain stitch outline, a small silver jingle bell sewn where the fill stops, and a short knitting needle holding the final two unfinished loops with a loose ivory yarn tail. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
 ```
 
 Variant:
 
 ```
-Make this a felt appliqué patch stitched onto the sweater: a long ivory felt strip with a red knitted section filling almost all of it, leaving a small empty gap at the right end, outlined in green chain stitch, with one small shiny silver jingle bell sewn at the end of the red section. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+Make this a felt appliqué patch stitched onto the sweater: a long ivory felt strip with a red knitted section filling almost all of it, leaving a small empty gap at the right end, outlined in green chain stitch, with one small shiny silver jingle bell at the end of the red section, two live loops on a short knitting needle and a loose ivory yarn tail. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
 ```
 
-- **Keep if:** the empty gap at the end is visible at 128 px, the bell is at the stuck end, looks sewn.
+- **Keep if:** the empty gap, live loops and loose yarn at the end are visible at 128 px, the bell is at the stuck end, looks sewn.
 - **Reject if:** bar is full, bell is elsewhere, any numbers or OS-like styling.
 
 ## S05 Sleeve cables (annotation prompting)
@@ -273,7 +273,7 @@ Behind the person, a cosy night-time living room photographed with a shallow dep
 - **Budget:** 4–6
 
 ```
-Dress the person on the left in exactly the sweater shown on the right: same cranberry wool, same Fair Isle bands, same progress bar and bell, same cables on the sleeves, same hem tag. Keep the person's face, pose and the room unchanged. Fit the sweater naturally to the body with folds and the room's warm light. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+Dress the person on the left in exactly the sweater shown on the right: same cranberry wool, same Fair Isle bands, same unfinished final loops, needle and yarn tail, same progress bar and bell, same cables on the sleeves, same hem tag. Keep the person's face, pose and the room unchanged. Fit the sweater naturally to the body with folds and the room's warm light. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
 ```
 
 Variant:
