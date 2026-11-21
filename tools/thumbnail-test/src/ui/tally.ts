@@ -1,9 +1,8 @@
+import { loadRevision, saveRevision, REVISION_KEY, type Revision } from '../lib/revision';
+import type { SlotKind } from '../lib/validate';
 import {
-  deserialize,
   emptyTally,
   MAX_TESTERS,
-  serialize,
-  STORAGE_KEY,
   summarize,
   tallyReducer,
   toMarkdown,
@@ -22,16 +21,15 @@ const VERDICTS: { v: Verdict; label: string }[] = [
   { v: 'missed', label: 'Missed' },
 ];
 
-function load(): TallyState {
-  try {
-    return deserialize(localStorage.getItem(STORAGE_KEY));
-  } catch {
-    return deserialize(null);
-  }
-}
-
 export function mountTally(root: HTMLElement, announce: (msg: string) => void): void {
-  let results = load();
+  let results = emptyTally();
+  let selected: SlotKind = 'sweater';
+  let archive: string | null = null;
+  try { archive = localStorage.getItem(REVISION_KEY); } catch { /* memory only */ }
+  const revision = (): Revision | null => {
+    const img = visibleImages(getState())[selected];
+    return img?.digest ? { subject: selected, digest: img.digest, name: img.name, width: img.width, height: img.height } : null;
+  };
   let practice = emptyTally();
   let sampleMode = getState().sample;
   const currentTally = (): TallyState => sampleMode ? practice : results;
@@ -56,7 +54,8 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     } else {
       results = tallyReducer(results, action);
       try {
-        localStorage.setItem(STORAGE_KEY, serialize(results));
+        const r = revision();
+        if (r) { archive = saveRevision(archive, r, results); localStorage.setItem(REVISION_KEY, archive); }
       } catch {
         /* storage full or blocked: keep in memory */
       }
@@ -65,8 +64,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
   };
 
   const subject = () => {
-    const { card, sweater } = visibleImages(getState());
-    return card ?? sweater;
+    return visibleImages(getState())[selected];
   };
 
   const cancelButton = () => {
@@ -218,12 +216,17 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     focusAfter = null;
   }
 
+  const initialRevision = revision();
+  results = initialRevision ? loadRevision(archive, initialRevision) : emptyTally();
   let lastSubject = subject();
   subscribe(({ sample }) => {
     const current = subject();
     if (current === lastSubject && sample === sampleMode) return;
     lastSubject = current;
     sampleMode = sample;
+    const r = revision();
+    results = r ? loadRevision(archive, r) : emptyTally();
+    practice = emptyTally();
     if (dialog.open) cancel();
     render();
   });
