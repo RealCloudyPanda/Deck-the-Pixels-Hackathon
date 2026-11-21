@@ -151,3 +151,19 @@ the entrant in Adobe Photoshop with Nano Banana, and are not part of this reposi
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+### Revision-aware review
+
+The story is “one stitch from submitted”: 11:59, an almost-finished knit bar, live loops and a loose yarn
+tail, worn with complete sincerity in a quiet holiday portrait. The SVGs remain placement sketches, not
+AI-generated contest art or Photoshop evidence.
+
+Choose the sweater or card before each three-second blind test. Actual file bytes are SHA-256 hashed
+locally; feedback is restored only for the same subject and digest. Filenames alone never identify a
+revision. Export JSON to keep the revision metadata and responses together. Browser storage is optional;
+when blocked, export before closing the tab. Old v1 answers remain untouched as an unbound archive and
+are never counted as evidence for a new image. Samples have separate, ephemeral practice responses.
+
+The side-by-side checklist is manual, resets when an image changes, and offers no AI similarity score.
+Readiness reports actual export file checks; it cannot certify the joke, likeness, Photoshop layers or
+contest eligibility. No image is uploaded, no account or key is required, and no contest artwork is claimed.
