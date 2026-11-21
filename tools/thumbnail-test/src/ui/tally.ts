@@ -99,7 +99,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     const form = h(
       'form',
       { class: 'tally__form' },
-      h('label', { for: 'tally-answer', class: 'field__label' }, `What's the joke? ${name ? `(${name})` : ''}`),
+      h('label', { for: 'tally-answer', class: 'field__label' }, `${selected === 'sweater' ? 'What is unfinished, and why?' : 'What is happening in this holiday portrait?'} ${name ? `(${name})` : ''}`),
       area,
       h('div', { class: 'tally__actions' }, h('button', { type: 'submit', class: 'btn btn--primary' }, 'Save answer'), cancelButton()),
     );
@@ -125,6 +125,17 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       return h('p', { class: 'tally__done' }, `All ${MAX_TESTERS} testers recorded. Mark each answer below.`);
     }
     const img = subject();
+    const subjectSelect = h('select', { id: 'tally-subject' },
+      h('option', { value: 'sweater' }, 'Sweater design'), h('option', { value: 'card' }, 'Finished card'));
+    subjectSelect.value = selected;
+    subjectSelect.addEventListener('change', () => {
+      selected = subjectSelect.value as SlotKind;
+      const r = revision();
+      results = r ? loadRevision(archive, r) : emptyTally();
+      practice = emptyTally();
+      render();
+      root.querySelector<HTMLElement>('#tally-subject')?.focus();
+    });
     const nameInput = h('input', { id: 'tally-name', type: 'text', autocomplete: 'off', placeholder: 'Optional' });
     nameInput.value = root.querySelector<HTMLInputElement>('#tally-name')?.value ?? '';
     const go = h('button', { type: 'submit', class: 'btn btn--primary', disabled: !img }, `Show for ${REVEAL_SECONDS} seconds`);
@@ -133,6 +144,9 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       { class: 'tally__form' },
       h('label', { for: 'tally-name', class: 'field__label' }, `Tester ${count + 1} of ${MAX_TESTERS}`),
       nameInput,
+      h('label', { for: 'tally-subject', class: 'field__label' }, 'Choose the image to test'),
+      subjectSelect,
+      h('p', { class: 'hint' }, selected === 'sweater' ? 'Question after three seconds: What is unfinished, and why?' : 'Question after three seconds: What is happening in this holiday portrait?'),
       go,
       img ? h('p', { class: 'hint' }, `Hand the screen to the tester as you start. Shows the ${img.kind === 'card' ? 'Finished Card' : 'Sweater Design'} at 128 px, then hides it.`) : h('p', { class: 'hint' }, 'Load an image first.'),
     );
