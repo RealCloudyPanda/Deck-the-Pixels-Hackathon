@@ -19,11 +19,11 @@ in the [Thumbnail Test](../tools/thumbnail-test/) before moving on.
 | Tier | Read Size | Element | Lives in |
 |---|---|---|---|
 | 1 | 64 px | Giant ivory knit **"11:59"** across the chest, last stitch visibly loose, Snow Ivory on Cranberry Wool; small "PM" beside it | both images |
-| 2 | 128 px | Frozen red progress bar under the digits, stuck at **97%**, a 3D jingle bell sewn at the stuck end | both images |
-| 3 | 512 px+ | Knit hem tag "Submitting…"; tangled generic charger cables down both sleeves ending in pom-poms; Fair Isle bands of loading-spinner snowflakes and tiny hourglasses; coffee-cup band at the hem | both images |
+| 2 | 128 px | Nearly full red knit bar, ivory yarn tail breaking its silhouette and a bell at the unfinished end (the **97%** label is a close-view detail) | both images |
+| 3 | 512 px+ | Two or three live loops on the short needle, hand-set "97%", knit hem tag "Submitting…"; tangled generic charger cables down both sleeves ending in pom-poms; Fair Isle bands of loading-spinner snowflakes and tiny hourglasses; coffee-cup band at the hem | both images |
 | Card extra | 512 px+ | A closed laptop (no logo) on the sofa wrapped with a red bow; cocoa mug with steam | **Finished Card** only |
 
-At 64 px the deadline must read; at 128 px the loose stitch, needle and incomplete bar must explain what is unfinished. Never trade tier 1 legibility for tier 3 detail.
+At 64 px the deadline must read; at 128 px the nearly full bar and loose yarn silhouette must suggest unfinished knitting. Needle loops and the exact percentage belong at 512 px+. Never trade tier 1 legibility for tier 3 detail.
 
 ## Palette
 
@@ -98,6 +98,7 @@ The headline is sincere and large; the second line is small, a beat later. Both 
 - [ ] The colon is visible as two dots.
 - [ ] The progress bar reads as a bar that is almost, but not quite, full.
 - [ ] The bar is clearly below the digits, not touching them.
+- [ ] An ivory yarn tail projects beyond the bar silhouette; do not require individual loops or "97%" to read here.
 - [ ] Sweater silhouette reads as a sweater (sleeves spread, ribbed hem).
 - [ ] On the card: the face reads as a person with panda styling, and the chest digits survive the folds.
 - [ ] Grayscale: digits still separate from the red body.
@@ -106,7 +107,7 @@ The headline is sincere and large; the second line is small, a beat later. Both 
 
 Keep one short needle holding two or three live loops at the end of the bar, with a loose ivory yarn tail.
 The final stitch is the missing upload: do not add screens, cursors or extra captions to explain it.
-Keep the card room quiet, the portrait sincere, and the sweater unchanged.
+Keep the card room quiet, the portrait sincere, and the sweater unchanged. Compose the card close enough that the chest remains readable; use the scale gate in [RUNBOOK](RUNBOOK.md#thumbnail-scale-gate-before-decoration) before decorating.
 
 ## Do not
 

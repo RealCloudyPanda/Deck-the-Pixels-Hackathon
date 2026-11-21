@@ -115,19 +115,19 @@ Knit these exact ivory shapes into the red sweater as thick raised intarsia, eac
 
 ## S04 Progress bar
 
-- **Goal:** tier 2. A sewn appliqué bar stuck at 97% with a jingle bell at the stuck end.
+- **Goal:** tier 2. A nearly full sewn appliqué bar with a bell and projecting ivory yarn tail at the unfinished end. Keep the literal 97% guide; exact numerals and needle loops are tier 3 close-view details.
 - **Selection:** first draw the guide (RUNBOOK): ivory rounded rectangle track ~1100 x 110 px, red fill at
   97% of its length. Then Rectangular Marquee around it + 100 px all sides. Feather 8 px.
 - **Budget:** 2–3
 
 ```
-Turn this bar into a sewn-on appliqué progress bar: ivory felt track, red knitted fill that stops just before the end, green chain stitch outline, a small silver jingle bell sewn where the fill stops, and a short knitting needle holding the final two unfinished loops with a loose ivory yarn tail. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+Turn this bar into a sewn-on appliqué progress bar: ivory felt track, red knitted fill that stops just before the end, green chain stitch outline, a small silver jingle bell sewn where the fill stops, and a short knitting needle holding the final two unfinished loops with a loose ivory yarn tail projecting clearly below the bar silhouette. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
 ```
 
 Variant:
 
 ```
-Make this a felt appliqué patch stitched onto the sweater: a long ivory felt strip with a red knitted section filling almost all of it, leaving a small empty gap at the right end, outlined in green chain stitch, with one small shiny silver jingle bell at the end of the red section, two live loops on a short knitting needle and a loose ivory yarn tail. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
+Make this a felt appliqué patch stitched onto the sweater: a long ivory felt strip with a red knitted section filling almost all of it, leaving a small empty gap at the right end, outlined in green chain stitch, with one small shiny silver jingle bell at the end of the red section, two live loops on a short knitting needle and a loose ivory yarn tail projecting clearly below the bar silhouette. No text, no letters, no numbers, no logos, no brand marks, no watermarks, no extra people.
 ```
 
 - **Keep if:** the empty gap, live loops and loose yarn at the end are visible at 128 px, the bell is at the stuck end, looks sewn.

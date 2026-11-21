@@ -77,6 +77,31 @@ SWEATER_1159.psd
 5. Flatten a copy (File > Export > Quick Export as PNG to `work/`) and drop it into the Thumbnail Test:
    "11:59" must read at **64 px** before any knit generation is spent.
 
+### Thumbnail scale gate (before decoration)
+
+Test a rough export of the sweater and a rough card crop **before** S03/C03 or any decorative pass.
+This uses hand-set type and placed source layers; it costs no generation. Work from whole-image
+thumbnails, not a zoomed chest crop.
+
+| Whole image | First layout target | Actual acceptance check |
+|---|---|---|
+| Sweater, 2400 px wide | 520 px digit cap height becomes 13.9 px at 64 px wide | Read `11:59` with both colon dots at 64 px |
+| Card, 1500 px wide | Start with at least 235 px digit cap height (10 px at 64 px wide) | Read `11:59` at 64 px, without the face or card headline covering the chest |
+| Sweater bar, 1100 px long | A literal 3% gap is 33 source pixels: only 1.76 px at 128 px wide | Recognise a nearly full bar; do not depend on that gap or tiny loops alone |
+
+These are layout targets, not a guarantee for a font or generated texture. Formula:
+`thumbnail pixels = source feature pixels × thumbnail width / source image width`.
+On the card, measure again after the sweater is scaled and warped: the same gap becomes even smaller.
+Keep the literal 97% guide, but let a **separate, projecting ivory yarn tail** carry the unfinished
+silhouette at 128 px. Aim initially for a tail at least 4 px long and 2 px thick in that thumbnail
+(75 × 38 source px on the sweater; 47 × 24 source px on the card); test the final texture and contrast.
+The exact percentage and live needle loops are close-view rewards at 512 px+, not thumbnail promises.
+
+If the card fails: enlarge the portrait/chest crop, lower or shorten the headline, then reduce background
+props. Re-export without generating anything. If the sweater fails: open the colon and increase digit
+weight/size first. Do not spend more generations on Fair Isle or room details until both deadlines read.
+Only after this gate passes should you apply knit texture and finish the room. Recheck after each pass.
+
 ### S03 Knit digits — the type → rasterised copy → knit pass method
 
 1. Right-click `T 11:59` → **Duplicate Layer**. Right-click the copy → **Rasterize Type**. Move the copy into
@@ -265,8 +290,8 @@ so they are re-applied from type:
 ## Final-stitch revision review
 
 The physical joke is “one stitch from submitted.” At the right end of the nearly full bar, retain two
-or three live loops on a short needle and a loose ivory yarn tail. Check at 128 px before spending more
-generations on decoration. Carry those same features into the quiet card portrait without extra screens.
+or three live loops on a short needle and a loose ivory yarn tail. Check the bar and projecting tail
+at 128 px, then the needle loops at 512 px; use the scale gate before spending more generations on decoration. Carry those same features into the quiet card portrait without extra screens.
 
 Load both actual PNG exports in the Thumbnail Test. Use the continuity workbench to compare digits,
 loose stitch, bar gap, bell, bands and sleeve motifs. Its checkboxes reset on replacement; it supplies no

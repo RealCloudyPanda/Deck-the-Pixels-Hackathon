@@ -167,3 +167,5 @@ are never counted as evidence for a new image. Samples have separate, ephemeral 
 The side-by-side checklist is manual, resets when an image changes, and offers no AI similarity score.
 Readiness reports actual export file checks; it cannot certify the joke, likeness, Photoshop layers or
 contest eligibility. No image is uploaded, no account or key is required, and no contest artwork is claimed.
+
+Before generating texture or decoration, use the [thumbnail scale gate](docs/RUNBOOK.md#thumbnail-scale-gate-before-decoration). A literal 3% bar gap is only 1.76 px on the 128 px sweater thumbnail, and smaller in the portrait. The projecting yarn tail carries the unfinished silhouette; needle loops and the exact percentage are close-view details. Rough type and crop exports can catch this failure without spending a generation. No actual image legibility has been validated yet.
