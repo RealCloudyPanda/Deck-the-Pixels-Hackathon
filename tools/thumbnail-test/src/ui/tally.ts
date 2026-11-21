@@ -125,9 +125,6 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
 
   function flow(): HTMLElement {
     const count = currentTally().entries.length;
-    if (count >= MAX_TESTERS) {
-      return h('p', { class: 'tally__done' }, `All ${MAX_TESTERS} testers recorded. Mark each answer below.`);
-    }
     const img = subject();
     const subjectSelect = h('select', { id: 'tally-subject' },
       h('option', { value: 'sweater' }, 'Sweater design'), h('option', { value: 'card' }, 'Finished card'));
@@ -140,6 +137,12 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       render();
       root.querySelector<HTMLElement>('#tally-subject')?.focus();
     });
+    const subjectControl = h('div', {},
+      h('label', { for: 'tally-subject', class: 'field__label' }, 'Choose the image to test'), subjectSelect);
+    if (count >= MAX_TESTERS) {
+      return h('div', {}, subjectControl,
+        h('p', { class: 'tally__done' }, `All ${MAX_TESTERS} testers recorded. Mark each answer below.`));
+    }
     const nameInput = h('input', { id: 'tally-name', type: 'text', autocomplete: 'off', placeholder: 'Optional' });
     nameInput.value = root.querySelector<HTMLInputElement>('#tally-name')?.value ?? '';
     const go = h('button', { type: 'submit', class: 'btn btn--primary', disabled: !img }, `Show for ${REVEAL_SECONDS} seconds`);
@@ -148,8 +151,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       { class: 'tally__form' },
       h('label', { for: 'tally-name', class: 'field__label' }, `Tester ${count + 1} of ${MAX_TESTERS}`),
       nameInput,
-      h('label', { for: 'tally-subject', class: 'field__label' }, 'Choose the image to test'),
-      subjectSelect,
+      subjectControl,
       h('p', { class: 'hint' }, selected === 'sweater' ? 'Question after three seconds: What is unfinished, and why?' : 'Question after three seconds: What is happening in this holiday portrait?'),
       go,
       img ? h('p', { class: 'hint' }, `Hand the screen to the tester as you start. Shows the ${img.kind === 'card' ? 'Finished Card' : 'Sweater Design'} at 128 px, then hides it.`) : h('p', { class: 'hint' }, 'Load an image first.'),

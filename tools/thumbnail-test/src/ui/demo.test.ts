@@ -177,4 +177,37 @@ describe('Thumbnail Test demo', () => {
     expect(element<HTMLButtonElement>('#tally button[type=submit]').disabled).toBe(true);
   });
 
+  it('can test the card after completing all three sweater responses without clearing them', async () => {
+    await mount();
+    chooseFile('sweater.png');
+    await vi.advanceTimersByTimeAsync(0);
+    const cardInput = element<HTMLInputElement>('#file-card');
+    Object.defineProperty(cardInput, 'files', { configurable: true, value: [new File([], 'card.png', { type: 'image/png' })] });
+    cardInput.dispatchEvent(new Event('change'));
+    await vi.advanceTimersByTimeAsync(0);
+    for (let i = 0; i < 3; i++) {
+      submit('#tally form');
+      await vi.advanceTimersByTimeAsync(3000);
+      element<HTMLTextAreaElement>('#tally-answer').value = `Sweater response ${i + 1}`;
+      submit('dialog form');
+    }
+    expect(element('#tally').textContent).toContain('All 3 testers recorded');
+    const select = element<HTMLSelectElement>('#tally-subject');
+    expect(select).not.toBeNull();
+    select.value = 'card';
+    select.dispatchEvent(new Event('change'));
+    expect(element('#tally').textContent).not.toContain('Sweater response');
+    expect(element<HTMLButtonElement>('#tally button[type=submit]').disabled).toBe(false);
+    submit('#tally form');
+    await vi.advanceTimersByTimeAsync(3000);
+    element<HTMLTextAreaElement>('#tally-answer').value = 'Card response';
+    submit('dialog form');
+    const back = element<HTMLSelectElement>('#tally-subject');
+    back.value = 'sweater';
+    back.dispatchEvent(new Event('change'));
+    expect(element('#tally').textContent).toContain('Sweater response 3');
+    expect(element('#tally').textContent).not.toContain('Card response');
+    expect(element('#tally').textContent).toContain('Export revision + responses');
+  });
+
 });
