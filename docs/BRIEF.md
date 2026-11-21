@@ -5,7 +5,9 @@ Keep this open beside Photoshop. Terms in **bold** are defined in [GLOSSARY.md](
 ## The joke in one sentence
 
 A calm, wholesome holiday portrait of the owner as their messy brown **Panda Self**, wearing a sweater
-that celebrates the worst minute of finals season: **11:59 PM, upload frozen at 97%**.
+that is **one stitch from submitted**: at **11:59 PM**, its ivory deadline digits are physically unfinished.
+A loose yarn tail and a needle holding the last few loops make the stalled **97%** bar a knitting problem,
+not a screenshot of software. The quiet card portrait treats this absurd unfinished garment with complete sincerity.
 
 Title: **The 11:59 Sweater** · Tagline: **"Peace on Earth, and a successful upload."**
 
@@ -16,12 +18,12 @@ in the [Thumbnail Test](../tools/thumbnail-test/) before moving on.
 
 | Tier | Read Size | Element | Lives in |
 |---|---|---|---|
-| 1 | 64 px | Giant glittery knit **"11:59"** across the chest, Snow Ivory on Cranberry Wool; small "PM" beside it | both images |
+| 1 | 64 px | Giant ivory knit **"11:59"** across the chest, last stitch visibly loose, Snow Ivory on Cranberry Wool; small "PM" beside it | both images |
 | 2 | 128 px | Frozen red progress bar under the digits, stuck at **97%**, a 3D jingle bell sewn at the stuck end | both images |
 | 3 | 512 px+ | Knit hem tag "Submitting…"; tangled generic charger cables down both sleeves ending in pom-poms; Fair Isle bands of loading-spinner snowflakes and tiny hourglasses; coffee-cup band at the hem | both images |
 | Card extra | 512 px+ | A closed laptop (no logo) on the sofa wrapped with a red bow; cocoa mug with steam | **Finished Card** only |
 
-If only tier 1 reads, the joke still lands. Never trade tier 1 legibility for tier 3 detail.
+At 64 px the deadline must read; at 128 px the loose stitch, needle and incomplete bar must explain what is unfinished. Never trade tier 1 legibility for tier 3 detail.
 
 ## Palette
 
@@ -99,6 +101,12 @@ The headline is sincere and large; the second line is small, a beat later. Both 
 - [ ] Sweater silhouette reads as a sweater (sleeves spread, ribbed hem).
 - [ ] On the card: the face reads as a person with panda styling, and the chest digits survive the folds.
 - [ ] Grayscale: digits still separate from the red body.
+
+## Physical punchline
+
+Keep one short needle holding two or three live loops at the end of the bar, with a loose ivory yarn tail.
+The final stitch is the missing upload: do not add screens, cursors or extra captions to explain it.
+Keep the card room quiet, the portrait sincere, and the sweater unchanged.
 
 ## Do not
 
