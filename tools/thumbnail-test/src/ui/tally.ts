@@ -1,6 +1,8 @@
 import { loadRevision, saveRevision, REVISION_KEY, type Revision } from '../lib/revision';
 import type { SlotKind } from '../lib/validate';
 import {
+  deserialize,
+  STORAGE_KEY,
   emptyTally,
   MAX_TESTERS,
   summarize,
@@ -193,6 +195,13 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
 
   function footer(): HTMLElement {
     const tally = currentTally();
+    let legacy = emptyTally();
+    try { legacy = deserialize(localStorage.getItem(STORAGE_KEY)); } catch { /* optional archive */ }
+    const legacyCopy = h('button', { type: 'button', class: 'btn btn--quiet', disabled: !legacy.entries.length }, 'Copy legacy unbound archive');
+    legacyCopy.addEventListener('click', () => {
+      const text = `UNBOUND LEGACY ARCHIVE: image and revision unknown. Do not count toward current readiness.\n\n${toMarkdown(legacy, 'legacy date unknown')}`;
+      window.prompt('Copy unbound archive:', text);
+    });
     const s = summarize(tally);
     const copy = h('button', { type: 'button', class: 'btn', disabled: !tally.entries.length }, 'Copy as Markdown');
     copy.addEventListener('click', async () => {
@@ -228,7 +237,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       'div',
       { class: 'tally__foot' },
       h('p', { class: 'tally__score' }, h('span', { class: 'mono tally__big' }, `${s.got} of ${MAX_TESTERS}`), ' got it'),
-      h('div', { class: 'tally__actions' }, sampleMode ? null : copy, sampleMode ? null : download, reset),
+      h('div', { class: 'tally__actions' }, sampleMode ? null : copy, sampleMode ? null : download, reset, legacy.entries.length ? legacyCopy : null),
       storageWarning ? h('p', { role: 'status', class: 'hint' }, 'Storage unavailable: export responses before closing this tab.') : null,
       h('p', { class: 'hint' }, sampleMode ? 'Practice answers stay in this tab until you reload.' : 'Private: for your own decisions, never a public metric. Saved only in this browser.'),
     );
