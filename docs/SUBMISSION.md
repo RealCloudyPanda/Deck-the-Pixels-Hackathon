@@ -76,3 +76,15 @@ Three techniques made Nano Banana controllable inside Photoshop. A reference lay
 | Two images, PNG/JPEG | Export table in RUNBOOK §5 | [ ] |
 | Written answers on how Nano Banana + Photoshop made each image | Templates above, built from the Generation Log | [ ] |
 | Screenshot of the file with the Layers panel | RUNBOOK §6 recipe | [ ] |
+
+## Devpost rules check (read on deckthepixels.devpost.com on 2026-11-21)
+
+| Item | What the rules say | Status |
+|---|---|---|
+| Deadline | **Mon Dec 7 2026, 4:00 PM ET.** | Confirmed. The checklist above already aims for 12:00 PM that day; aim for **Dec 6** if you can. |
+| Eligibility | Above the age of majority where you live; Quebec, Italy, Brazil and others excluded. | Owner to confirm. |
+| Required uploads | Two images, written answers on how Nano Banana and Photoshop made each image, and a screenshot of the Photoshop file with the Layers panel visible. | Images not made yet. |
+| Video | **Optional.** If included: no longer than 3 minutes (only the first 3 are judged), public on **YouTube or Vimeo**, English or English subtitles, showing how you made it in Photoshop with Nano Banana. | Script below, only if you have real screen recordings. |
+| Judging (equally weighted, 1–5 each) | Technological Implementation (how thoroughly and skillfully it uses Nano Banana and Photoshop), Innovation/Idea, Design (sweater and card polished and working together). | |
+| Public voting | Dec 18 2026 – Jan 15 2027 for the **Fa-La-La Fan Favorite** prize. One vote per person; vote manipulation, multiple accounts or paying voters can disqualify you. | The brief calls this prize "Community Choice"; the rules page name is Fa-La-La Fan Favorite. |
+| Timeline after the deadline | Judging Jan 4–15 2027; winners around Jan 22. | |
