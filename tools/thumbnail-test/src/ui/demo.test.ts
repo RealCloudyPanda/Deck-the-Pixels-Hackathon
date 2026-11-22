@@ -210,4 +210,31 @@ describe('Thumbnail Test demo', () => {
     expect(element('#tally').textContent).toContain('Export revision + responses');
   });
 
+  it('cancels a reveal when an asynchronous replacement takes effect and restores keyboard focus', async () => {
+    await mount();
+    chooseFile('first.png');
+    await vi.advanceTimersByTimeAsync(0);
+    submit('#tally form');
+    const dialog = element<HTMLDialogElement>('dialog');
+    const finishReplacement = stopDecodeAt('blob:replacement.png');
+    chooseFile('replacement.png');
+    await vi.advanceTimersByTimeAsync(1000);
+    expect(dialog.open).toBe(true);
+    expect(revokeObjectURL).not.toHaveBeenCalledWith('blob:first.png');
+    finishReplacement();
+    await vi.advanceTimersByTimeAsync(0);
+    expect(dialog.open).toBe(false);
+    expect(document.activeElement?.id).toBe('tally-name');
+    expect(revokeObjectURL).toHaveBeenCalledWith('blob:first.png');
+    await vi.advanceTimersByTimeAsync(5000);
+    expect(dialog.querySelector('#tally-answer')).toBeNull();
+    expect(element('#tally').textContent).toContain('No answers yet');
+    submit('#tally form');
+    dialog.dispatchEvent(new Event('cancel', { cancelable: true }));
+    expect(dialog.open).toBe(false);
+    expect(document.activeElement?.id).toBe('tally-name');
+    await vi.advanceTimersByTimeAsync(3000);
+    expect(dialog.querySelector('#tally-answer')).toBeNull();
+  });
+
 });
