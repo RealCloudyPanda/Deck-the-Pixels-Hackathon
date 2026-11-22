@@ -1,5 +1,5 @@
 import { loadRevision, saveRevision, REVISION_KEY, type Revision } from './revision';
-import { deserialize, emptyTally, STORAGE_KEY, tallyReducer, toMarkdown, type TallyAction, type Verdict } from './tally';
+import { deserialize, emptyTally, MAX_TESTERS, STORAGE_KEY, tallyReducer, toMarkdown, type TallyAction, type Verdict } from './tally';
 import type { SlotKind } from './validate';
 
 type Context = { subject: SlotKind; practice: boolean; revision: Revision | null; image: unknown };
@@ -32,16 +32,16 @@ export function createTallySession(deps: Dependencies) {
     }
   };
   return {
-    snapshot: () => ({ ...context, tally, warning, active: pending !== null }),
+    snapshot: () => structuredClone({ subject: context.subject, practice: context.practice, revision: context.revision, tally, warning, active: pending !== null }),
     sync(next: Context) {
       if (next.subject === context.subject && next.practice === context.practice && next.image === context.image) return false;
       cancel();
-      context = next;
+      context = { ...next, revision: next.revision ? { ...next.revision } : null };
       tally = next.practice || !next.revision ? emptyTally() : loadRevision(archive, next.revision);
       return true;
     },
     reveal(name: string, tick: (seconds: number) => void, answer: () => void) {
-      if (!context.image || pending || tally.entries.length >= 3) return false;
+      if (!context.image || pending || tally.entries.length >= MAX_TESTERS) return false;
       pending = { name, answering: false };
       let left = 3;
       timer = deps.schedule(() => {
@@ -75,7 +75,7 @@ export function createTallySession(deps: Dependencies) {
       return [toMarkdown(tally, date), '', r ? `Subject: ${r.subject} · File: ${r.name.replace(/\s+/g, ' ')} · ${r.width} × ${r.height} px\nSHA-256: ${r.digest}` : 'Practice sketch: not evidence for an actual export.'].join('\n');
     },
     export(exportedAt: string) {
-      return { version: 2, exportedAt, revision: context.revision, practice: context.practice, responses: tally.entries };
+      return structuredClone({ version: 2, exportedAt, revision: context.revision, practice: context.practice, responses: tally.entries });
     },
   };
 }

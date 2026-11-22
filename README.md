@@ -111,6 +111,11 @@ browser tab. The Tally for your exports, the budget counter and the Sample Mode 
 | Design | Palette and contrast rule in [BRIEF](docs/BRIEF.md#palette); the [Composition Sketches](docs/images/sketch-sweater.svg); the Thumbnail Test for checking the final exports |
 | Rules compliance | [SUBMISSION — rules compliance](docs/SUBMISSION.md#rules-compliance) |
 
+The Tally session module (`tools/thumbnail-test/src/lib/tallySession.ts`) owns reveal timing,
+cancellation, practice isolation, revision restoration, persistence and export metadata. The DOM
+provides browser storage and clock adapters and renders the session. Lifecycle tests use that same
+interface; DOM regressions cover asynchronous image replacement, focus and the completed Tally selector.
+
 ## Project structure
 
 ```
