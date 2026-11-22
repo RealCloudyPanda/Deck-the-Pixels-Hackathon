@@ -1,17 +1,6 @@
-import { loadRevision, saveRevision, REVISION_KEY, type Revision } from '../lib/revision';
+import { createTallySession } from '../lib/tallySession';
 import type { SlotKind } from '../lib/validate';
-import {
-  deserialize,
-  STORAGE_KEY,
-  emptyTally,
-  MAX_TESTERS,
-  summarize,
-  tallyReducer,
-  toMarkdown,
-  type TallyAction,
-  type TallyState,
-  type Verdict,
-} from '../lib/tally';
+import { MAX_TESTERS, summarize, type Verdict } from '../lib/tally';
 import { h } from './dom';
 import { getState, subscribe, visibleImages } from './store';
 import { stepDown } from './render';
@@ -24,25 +13,25 @@ const VERDICTS: { v: Verdict; label: string }[] = [
 ];
 
 export function mountTally(root: HTMLElement, announce: (msg: string) => void): void {
-  let results = emptyTally();
   let selected: SlotKind = 'sweater';
-  let archive: string | null = null;
-  let storageWarning = false;
-  try { archive = localStorage.getItem(REVISION_KEY); } catch { storageWarning = true; }
-  const revision = (): Revision | null => {
-    const img = visibleImages(getState())[selected];
-    return img?.digest ? { subject: selected, digest: img.digest, name: img.name, width: img.width, height: img.height } : null;
+  const session = createTallySession({
+    storage: { getItem: (key) => localStorage.getItem(key), setItem: (key, value) => localStorage.setItem(key, value) },
+    schedule: (tick) => window.setInterval(tick, 1000),
+    unschedule: (timer) => window.clearInterval(timer as number),
+    storageFailed: () => announce('Browser storage is unavailable. Export responses before closing this tab.'),
+  });
+  const currentTally = () => session.snapshot().tally;
+  const sync = () => {
+    const image = visibleImages(getState())[selected];
+    return session.sync({ subject: selected, practice: getState().sample, image,
+      revision: image?.digest ? { subject: selected, digest: image.digest, name: image.name, width: image.width, height: image.height } : null });
   };
-  let practice = emptyTally();
-  let sampleMode = getState().sample;
-  const currentTally = (): TallyState => sampleMode ? practice : results;
-  let timer: number | undefined;
   let focusAfter: string | null = null;
   const dialog = h('dialog', { class: 'tally-dialog', 'aria-label': 'Thumbnail Tally' });
   root.after(dialog);
 
   const cancel = (): void => {
-    window.clearInterval(timer);
+    session.cancel();
     dialog.close();
     root.querySelector<HTMLInputElement>('#tally-name')?.focus();
   };
@@ -50,22 +39,6 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     event.preventDefault();
     cancel();
   });
-
-  const dispatch = (action: TallyAction): void => {
-    if (sampleMode) {
-      practice = tallyReducer(practice, action);
-    } else {
-      results = tallyReducer(results, action);
-      try {
-        const r = revision();
-        if (r) { archive = saveRevision(archive, r, results); localStorage.setItem(REVISION_KEY, archive); }
-      } catch {
-        storageWarning = true;
-        announce('Browser storage is unavailable. Export responses before closing this tab.');
-      }
-    }
-    render();
-  };
 
   const subject = () => {
     return visibleImages(getState())[selected];
@@ -82,20 +55,12 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     canvas.className = 'thumb__img';
     canvas.setAttribute('role', 'img');
     canvas.setAttribute('aria-label', img.sample ? 'Sample composition sketch at 128 pixels' : 'The image at 128 pixels, shown briefly');
-    let left = REVEAL_SECONDS;
+    const left = REVEAL_SECONDS;
     const count = h('p', { class: 'reveal__count mono', 'aria-hidden': 'true' }, String(left));
     dialog.replaceChildren(h('div', { class: 'reveal' }, img.sample ? h('p', { class: 'hint' }, 'Practice · Sample sketch') : '', canvas, count, cancelButton()));
     dialog.showModal();
     announce(`Showing the image for ${REVEAL_SECONDS} seconds.`);
-    timer = window.setInterval(() => {
-      left -= 1;
-      if (left > 0) {
-        count.textContent = String(left);
-        return;
-      }
-      window.clearInterval(timer);
-      showAnswer(name);
-    }, 1000);
+    session.reveal(name, (seconds) => { count.textContent = String(seconds); }, () => showAnswer(name));
   };
 
   function showAnswer(name: string): void {
@@ -115,7 +80,8 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       }
       dialog.close();
       focusAfter = `verdict-${currentTally().entries.length}-got`;
-      dispatch({ type: 'add', id: `t${Date.now().toString(36)}`, name, answer: area.value });
+      if (!session.answer(area.value)) return;
+      render();
       announce('Answer saved. Mark it Got it, Partly or Missed.');
     });
     dialog.replaceChildren(form);
@@ -131,9 +97,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     subjectSelect.value = selected;
     subjectSelect.addEventListener('change', () => {
       selected = subjectSelect.value as SlotKind;
-      const r = revision();
-      results = r ? loadRevision(archive, r) : emptyTally();
-      practice = emptyTally();
+      sync();
       render();
       root.querySelector<HTMLElement>('#tally-subject')?.focus();
     });
@@ -184,7 +148,8 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
               const b = h('button', { type: 'button', class: `seg__btn seg__btn--${v}`, 'aria-pressed': String(e.verdict === v), id: `verdict-${i}-${v}` }, label);
               b.addEventListener('click', () => {
                 focusAfter = b.id;
-                dispatch({ type: 'mark', id: e.id, verdict: v });
+                session.mark(e.id, v);
+                render();
               });
               group.append(b);
             });
@@ -197,18 +162,14 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
 
   function footer(): HTMLElement {
     const tally = currentTally();
-    let legacy = emptyTally();
-    try { legacy = deserialize(localStorage.getItem(STORAGE_KEY)); } catch {  }
-    const legacyCopy = h('button', { type: 'button', class: 'btn btn--quiet', disabled: !legacy.entries.length }, 'Copy legacy unbound archive');
-    legacyCopy.addEventListener('click', () => {
-      const text = `UNBOUND LEGACY ARCHIVE: image and revision unknown. Do not count toward current readiness.\n\n${toMarkdown(legacy, 'legacy date unknown')}`;
-      window.prompt('Copy unbound archive:', text);
-    });
+    const { practice: sampleMode, warning: storageWarning } = session.snapshot();
+    const legacy = session.legacyMarkdown();
+    const legacyCopy = h('button', { type: 'button', class: 'btn btn--quiet', disabled: !legacy }, 'Copy legacy unbound archive');
+    legacyCopy.addEventListener('click', () => { window.prompt('Copy unbound archive:', legacy ?? ''); });
     const s = summarize(tally);
     const copy = h('button', { type: 'button', class: 'btn', disabled: !tally.entries.length }, 'Copy as Markdown');
     copy.addEventListener('click', async () => {
-      const r = revision();
-      const md = [toMarkdown(tally, new Date().toLocaleDateString('en-CA')), '', r ? `Subject: ${r.subject} · File: ${r.name.replace(/\s+/g, ' ')} · ${r.width} × ${r.height} px\nSHA-256: ${r.digest}` : 'Practice sketch: not evidence for an actual export.'].join('\n');
+      const md = session.markdown(new Date().toLocaleDateString('en-CA'));
       try {
         await navigator.clipboard.writeText(md);
         copy.textContent = 'Copied';
@@ -223,13 +184,14 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       const message = sampleMode ? 'Clear the practice Tally?' : 'Delete all Tally answers saved in this browser? This cannot be undone.';
       if (window.confirm(message)) {
         focusAfter = 'tally-name';
-        dispatch({ type: 'reset' });
+        session.reset();
+        render();
         announce('Tally reset.');
       }
     });
     const download = h('button', { type: 'button', class: 'btn', disabled: !tally.entries.length }, 'Export revision + responses');
     download.addEventListener('click', () => {
-      const data = { version: 2, exportedAt: new Date().toISOString(), revision: revision(), practice: sampleMode, responses: tally.entries };
+      const data = session.export(new Date().toISOString());
       const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
       const link = h('a', { href: url, download: `thumbnail-${selected}-feedback.json` });
       link.click();
@@ -239,7 +201,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       'div',
       { class: 'tally__foot' },
       h('p', { class: 'tally__score' }, h('span', { class: 'mono tally__big' }, `${s.got} of ${MAX_TESTERS}`), ' got it'),
-      h('div', { class: 'tally__actions' }, sampleMode ? null : copy, sampleMode ? null : download, reset, legacy.entries.length ? legacyCopy : null),
+      h('div', { class: 'tally__actions' }, sampleMode ? null : copy, sampleMode ? null : download, reset, legacy ? legacyCopy : null),
       storageWarning ? h('p', { role: 'status', class: 'hint' }, 'Storage unavailable: export responses before closing this tab.') : null,
       h('p', { class: 'hint' }, sampleMode ? 'Practice answers stay in this tab until you reload.' : 'Private: for your own decisions, never a public metric. Saved only in this browser.'),
     );
@@ -253,17 +215,9 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     focusAfter = null;
   }
 
-  const initialRevision = revision();
-  results = initialRevision ? loadRevision(archive, initialRevision) : emptyTally();
-  let lastSubject = subject();
-  subscribe(({ sample }) => {
-    const current = subject();
-    if (current === lastSubject && sample === sampleMode) return;
-    lastSubject = current;
-    sampleMode = sample;
-    const r = revision();
-    results = r ? loadRevision(archive, r) : emptyTally();
-    practice = emptyTally();
+  sync();
+  subscribe(() => {
+    if (!sync()) return;
     if (dialog.open) cancel();
     render();
   });
