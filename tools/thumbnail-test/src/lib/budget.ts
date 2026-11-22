@@ -45,7 +45,7 @@ export function parseBudget(raw: string | null): BudgetState | null {
       if (typeof r.date === 'string' && typeof r.used === 'number') return { date: r.date, used: r.used };
     }
   } catch {
-    /* fall through */
+    return null;
   }
   return null;
 }
