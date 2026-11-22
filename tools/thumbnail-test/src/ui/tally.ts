@@ -1,16 +1,17 @@
 import { createTallySession } from '../lib/tallySession';
 import type { SlotKind } from '../lib/validate';
-import { MAX_TESTERS, summarize, type Verdict } from '../lib/tally';
+import { MAX_TESTERS, summarize } from '../lib/tally';
 import { h } from './dom';
 import { getState, subscribe, visibleImages } from './store';
 import { stepDown } from './render';
+import { downloadJson } from './download';
+import { verdictGroup } from './verdictGroup';
 
 const REVEAL_SECONDS = 3;
-const VERDICTS: { v: Verdict; label: string }[] = [
-  { v: 'got', label: 'Got it' },
-  { v: 'partly', label: 'Partly' },
-  { v: 'missed', label: 'Missed' },
-];
+const QUESTIONS: Record<SlotKind, string> = {
+  sweater: 'What is unfinished, and why?',
+  card: 'What is happening in this holiday portrait?',
+};
 
 export function mountTally(root: HTMLElement, announce: (msg: string) => void): void {
   let selected: SlotKind = 'sweater';
@@ -68,7 +69,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     const form = h(
       'form',
       { class: 'tally__form' },
-      h('label', { for: 'tally-answer', class: 'field__label' }, `${selected === 'sweater' ? 'What is unfinished, and why?' : 'What is happening in this holiday portrait?'} ${name ? `(${name})` : ''}`),
+      h('label', { for: 'tally-answer', class: 'field__label' }, `${QUESTIONS[selected]} ${name ? `(${name})` : ''}`),
       area,
       h('div', { class: 'tally__actions' }, h('button', { type: 'submit', class: 'btn btn--primary' }, 'Save answer'), cancelButton()),
     );
@@ -116,7 +117,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
       h('label', { for: 'tally-name', class: 'field__label' }, `Tester ${count + 1} of ${MAX_TESTERS}`),
       nameInput,
       subjectControl,
-      h('p', { class: 'hint' }, selected === 'sweater' ? 'Question after three seconds: What is unfinished, and why?' : 'Question after three seconds: What is happening in this holiday portrait?'),
+      h('p', { class: 'hint' }, `Question after three seconds: ${QUESTIONS[selected]}`),
       go,
       img ? h('p', { class: 'hint' }, `Hand the screen to the tester as you start. Shows the ${img.kind === 'card' ? 'Finished Card' : 'Sweater Design'} at 128 px, then hides it.`) : h('p', { class: 'hint' }, 'Load an image first.'),
     );
@@ -142,19 +143,11 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
           { class: 'entry' },
           h('p', { class: 'entry__who' }, e.name),
           h('p', { class: 'entry__answer' }, `“${e.answer}”`),
-          (() => {
-            const group = h('div', { class: 'seg', role: 'group', 'aria-label': `Verdict for ${e.name}` });
-            VERDICTS.forEach(({ v, label }) => {
-              const b = h('button', { type: 'button', class: `seg__btn seg__btn--${v}`, 'aria-pressed': String(e.verdict === v), id: `verdict-${i}-${v}` }, label);
-              b.addEventListener('click', () => {
-                focusAfter = b.id;
-                session.mark(e.id, v);
-                render();
-              });
-              group.append(b);
-            });
-            return group;
-          })(),
+          verdictGroup(i, e.name, e.verdict, (v, id) => {
+            focusAfter = id;
+            session.mark(e.id, v);
+            render();
+          }),
         ),
       ),
     );
@@ -191,11 +184,7 @@ export function mountTally(root: HTMLElement, announce: (msg: string) => void): 
     });
     const download = h('button', { type: 'button', class: 'btn', disabled: !tally.entries.length }, 'Export revision + responses');
     download.addEventListener('click', () => {
-      const data = session.export(new Date().toISOString());
-      const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
-      const link = h('a', { href: url, download: `thumbnail-${selected}-feedback.json` });
-      link.click();
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      downloadJson(session.export(new Date().toISOString()), `thumbnail-${selected}-feedback.json`);
     });
     return h(
       'div',
